@@ -40,10 +40,14 @@ conda activate lego
 ### NOIDAQmx
 
 Download NIDAQmx
-http://www.ni.com/en-us/support/downloads/drivers/download/packaged.ni-daqmx.301173.html
+https://www.ni.com/en-us/support/downloads/drivers/download.ni-daq-mx.html#48087973.html
 
 Install PyDaqmx 
 
+
+conda install -c fallen pydaqmx
+
+or
 
 download from https://github.com/clade/PyDAQmx
 
