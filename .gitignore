@@ -1,0 +1,4 @@
+*.pyc
+*.bat
+setup.py
+gui_w_cfgShadowSensorNONBETA.ui
