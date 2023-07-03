@@ -62,7 +62,7 @@ class VeloMode(gui_w_cfgVelomode.QtGui.QMainWindow,gui_w_cfgVelomode.Ui_MainWind
         self.LCD_period.display(1/f)
         
     def saveAF(self):
-        print 'saved'
+        print('saved')
         a = str(self.TB_amp.value())
         f = str(self.TB_freq.value())
         self.myConfig['global']['velo_freq'] = f
@@ -76,7 +76,7 @@ class VeloMode(gui_w_cfgVelomode.QtGui.QMainWindow,gui_w_cfgVelomode.Ui_MainWind
         self.myVeloPID.setPID(self.TB_D_velo.value(),'d','velo')
        
     def savePID(self):
-        print 'saved'
+        print('saved')
         activeCoil = self.myConfig['global']['activecoil']
         self.myConfig[activeCoil]['P_velo']=str(self.TB_P_velo.value())
         self.myConfig[activeCoil]['I_velo']=str(self.TB_I_velo.value())

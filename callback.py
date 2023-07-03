@@ -173,7 +173,7 @@ class CallbackTask(daq.Task, QtCore.QObject):
 #                        
 #                    self.setVoltage(self.output)
             else:
-                print 'ERROR: selected PID mode is Invalid'
+                print('ERROR: selected PID mode is Invalid')
 #            self.oldmode = self.mode
                 
         self.signalNewCallback.emit()

@@ -35,7 +35,7 @@ class CalibratePID(gui_w_cfgPID.QtGui.QMainWindow,gui_w_cfgPID.Ui_MainWindow,bas
         self.loadPID()
         self.TB_target.setValue(0.0)
         
-        print 'target: ',self.TB_target.value()
+        print('target: ',self.TB_target.value())
 
         #connecting timers and buttons and Textboxes        
         self.TB_P_fine.valueChanged.connect(self.setPIDs)
@@ -87,7 +87,7 @@ class CalibratePID(gui_w_cfgPID.QtGui.QMainWindow,gui_w_cfgPID.Ui_MainWindow,bas
             self.myConfig.write(configfile)
             
     def setPIDs(self):
-        print 'target: ',self.TB_target.value()
+        print('target: ',self.TB_target.value())
         self.myStaticPID.setPID(self.TB_P_fine.value(), 'p', 'fine')
         self.myStaticPID.setPID(self.TB_I_fine.value(), 'i', 'fine')
         self.myStaticPID.setPID(self.TB_D_fine.value(), 'd', 'fine')

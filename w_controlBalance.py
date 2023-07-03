@@ -35,19 +35,19 @@ class ControlBalance(gui_w_controlBalance.QtGui.QMainWindow,gui_w_controlBalance
             self.LCD_analogOutput.display(analogOutput)
         
     def usePIDFeedback(self):
-        print 'fb'
+        print('fb')
         self.CB_useInputBox.setChecked(False)
         self.CB_useInputWheel.setChecked(False)
         self.myTask.setDoPID(True)
         
     def useInputBox(self):
-        print 'box'
+        print('box')
         self.CB_usePIDFeedback.setChecked(False)
         self.CB_useInputWheel.setChecked(False)
         self.myTask.setDoPID(False)
 
     def useInputWheel(self):
-        print 'wheel'
+        print('wheel')
         self.CB_usePIDFeedback.setChecked(False)
         self.CB_useInputBox.setChecked(False)
         self.myTask.setDoPID(False)

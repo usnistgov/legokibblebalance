@@ -143,7 +143,7 @@ class ConfigurePosition(gui_w_cfgPos.QtGui.QMainWindow,gui_w_cfgPos.Ui_MainWindo
             self.pointHeights.append(value)
             self.pt +=1
             self.pco -=1
-            print self.pco
+            prinT(self.pco)
             self.instructions()
         else:
             self.T_Instructions.appendPlainText('ERROR')
@@ -215,7 +215,7 @@ class ConfigurePosition(gui_w_cfgPos.QtGui.QMainWindow,gui_w_cfgPos.Ui_MainWindo
         fromZeroToMax = np.linspace(self.myZeroposition,self.myMax,toCalc+1,True)
         measurementPos = np.hstack((fromMinToZero,fromZeroToMax))
         returnlist = measurementPos.tolist()
-        print returnlist
+        print(returnlist)
         return returnlist      
         
     def calcPos(self):
@@ -223,13 +223,13 @@ class ConfigurePosition(gui_w_cfgPos.QtGui.QMainWindow,gui_w_cfgPos.Ui_MainWindo
         relPos = []
         pos = []
         for heightpoint in self.pointHeights:
-            print heightpoint, zeroheight, heightpoint-zeroheight
+            print(heightpoint, zeroheight, heightpoint-zeroheight)
             relPos.append(heightpoint - zeroheight)
-        print relPos
+        print(relPos)
         for rp in relPos:
             h = (rp/self.wallDistance)*self.armLength
             pos.append(h)
-        print pos
+        print(pos)
         return pos
         
 

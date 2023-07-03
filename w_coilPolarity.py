@@ -18,7 +18,7 @@ class CoilPolarity(gui_w_coilPolarity.QtGui.QMainWindow,gui_w_coilPolarity.Ui_Ma
         self.polarity_coilB = self.myConfig['coilB']['polarity']
         
         self.loadPolarities()
-        print "A: ", self.polarity_coilA," B: ",self.polarity_coilB
+        print("A: ", self.polarity_coilA," B: ",self.polarity_coilB)
         
         self.RDB_A_pos.toggled.connect(self.polaritiesAChanged)
         self.RDB_B_pos.toggled.connect(self.polaritiesBChanged)
@@ -48,7 +48,7 @@ class CoilPolarity(gui_w_coilPolarity.QtGui.QMainWindow,gui_w_coilPolarity.Ui_Ma
             self.polarity_coilA = "-1"
             self.myConfig['coilA']['polarity']="-1"
             
-        print self.polarity_coilA
+        print(self.polarity_coilA)
             
     def polaritiesBChanged(self):
         if self.RDB_B_pos.isChecked():
@@ -58,7 +58,7 @@ class CoilPolarity(gui_w_coilPolarity.QtGui.QMainWindow,gui_w_coilPolarity.Ui_Ma
             self.polarity_coilB = "-1"
             self.myConfig['coilB']['polarity']="-1"
         
-        print self.polarity_coilB
+        print(self.polarity_coilB)
         
     def manualClose(self):
         self.windowShown = False    
