@@ -45,9 +45,9 @@ https://www.ni.com/en-us/support/downloads/drivers/download.ni-daq-mx.html#48087
 Install PyDaqmx 
 
 
-conda install -c fallen pydaqmx
+pip install PyDAQmx
 
-or
+or:
 
 download from https://github.com/clade/PyDAQmx
 
