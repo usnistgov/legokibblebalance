@@ -1,8 +1,8 @@
 import gui_w_controlBalance
 import basicWindow
-
+from PyQt5 import QtWidgets 
       
-class ControlBalance(gui_w_controlBalance.QtGui.QMainWindow,gui_w_controlBalance.Ui_MainWindow,basicWindow.BasicWindow):
+class ControlBalance(QtWidgets.QMainWindow,gui_w_controlBalance.Ui_MainWindow,basicWindow.BasicWindow):
     def __init__(self, w_main):
         super(ControlBalance,self).__init__()
         self.loadBasicObjects(w_main)

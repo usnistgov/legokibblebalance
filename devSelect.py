@@ -1,27 +1,27 @@
 # -*- coding: utf-8 -*-
 
 import PyDAQmx as daq
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore,QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget
 from functools import partial
 import sys
 
 class DeviceListDialog(QWidget):
     def __init__(self, active_devices, myChanger):
-        QtGui.QWidget.__init__(self)
-        layout = QtGui.QVBoxLayout(self)
+        QtWidgets.QWidget.__init__(self)
+        layout = QtWidgets.QVBoxLayout(self)
         layout.setAlignment             
-        text = QtGui.QLabel()
+        text = QtWidgets.QLabel()
         text.setText("Choose the NI-Device you want to use")
         layout.addWidget(text)
         self.buttons = []
         for device in active_devices:
-            self.buttons.append(QtGui.QPushButton(device, self))
+            self.buttons.append(QtWidgets.QPushButton(device, self))
             self.buttons[-1].clicked.connect(partial(myChanger.changeActiveDevice, data=device))
             self.buttons[-1].clicked.connect(myChanger.saveRemember)
             self.buttons[-1].clicked.connect(self.done)
             layout.addWidget(self.buttons[-1])
-        cb_UseAsDefault = QtGui.QCheckBox("Always use this Device")
+        cb_UseAsDefault = QtWidgets.QCheckBox("Always use this Device")
         cb_UseAsDefault.stateChanged.connect(lambda: myChanger.toggleRemember(cb_UseAsDefault.isChecked()))
         layout.addWidget(cb_UseAsDefault)
         
@@ -35,12 +35,12 @@ class DeviceFinder(object):
         self.rememberedDevice = self.myconfig['global']['remember']
         
     def forcedSearch(self,w_main):
-        result = QtGui.QMessageBox.question(w_main,
+        result = QtWidgets.QMessageBox.question(w_main,
                           "Choose New Device?",
                           "If you choose a new Device the Program will close and you have to restart manually.",
-                          QtGui.QMessageBox.Yes| QtGui.QMessageBox.No)
+                          QtWidgets.QMessageBox.Yes| QtWidgets.QMessageBox.No)
 
-        if result == QtGui.QMessageBox.Yes:
+        if result == QtWidgets.QMessageBox.Yes:
             self.rememberedDevice = "False"
             self.search()
             w_main.prepareDesiredClose()
@@ -52,7 +52,8 @@ class DeviceFinder(object):
         self.the_buffer = daq.ctypes.create_string_buffer(self.buffer_size)
         daq.DAQmxGetSysDevNames(self.the_buffer, self.buffer_size);
         
-        self.device_list = self.the_buffer.value
+        self.device_list = self.the_buffer.value.decode()
+        print(self.device_list)
         self.active_devices = [i.strip() for i in self.device_list.split(",")]
         self.w_devselect = DeviceListDialog(self.active_devices,self.myChanger)
     
@@ -72,15 +73,15 @@ class DeviceFinder(object):
                 self.myChanger.changeActiveDevice(self.active_devices[0])
                 self.w_devselect.close()
         else:   
-            self.msgBox = QtGui.QMessageBox()
+            self.msgBox = QtWidgets.QMessageBox()
             self.msgBox.setWindowModality(QtCore.Qt.ApplicationModal)
             self.msgBox.setWindowTitle("Lego Watt-Balance")
             self.msgBox.setText("Error:")
             self.msgBox.setInformativeText("No Device has been found")
-            self.msgBox.addButton(QtGui.QPushButton('Try Again'), QtGui.QMessageBox.AcceptRole)
-            self.msgBox.addButton(QtGui.QPushButton('Exit'), QtGui.QMessageBox.NoRole)
+            self.msgBox.addButton(QtWidgets.QPushButton('Try Again'), QtWidgets.QMessageBox.AcceptRole)
+            self.msgBox.addButton(QtWidgets.QPushButton('Exit'), QtWidgets.QMessageBox.NoRole)
             ret = self.msgBox.exec_()
-            if ret == QtGui.QMessageBox.AcceptRole:
+            if ret == QtWidgets.QMessageBox.AcceptRole:
                 self.msgBox.close()
                 self.search()
             else:
@@ -99,7 +100,7 @@ class DevChanger(QtCore.QObject):
     def changeActiveDevice(self,data):            
         self.myconfig['global']['device'] = str(data)
         self.deviceFound.emit(self.myMainwindow)
-        print "device changed"
+        print("device changed")
         
     def toggleRemember(self, newRemember):
         self.remember = newRemember

@@ -2,9 +2,9 @@ from __future__ import division
 
 import gui_w_weighMass
 import basicWindow
+from PyQt5 import QtWidgets 
       
-      
-class WeighMass(gui_w_weighMass.QtGui.QMainWindow,gui_w_weighMass.Ui_MainWindow,basicWindow.BasicWindow):
+class WeighMass(QtWidgets.QMainWindow,gui_w_weighMass.Ui_MainWindow,basicWindow.BasicWindow):
     def __init__(self, w_main):
         super(WeighMass,self).__init__()
         self.loadBasicObjects(w_main)

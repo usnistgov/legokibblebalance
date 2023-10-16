@@ -1,8 +1,8 @@
 import gui_w_cfgPID
 import basicWindow
+from PyQt5 import QtWidgets
 
-
-class CalibratePID(gui_w_cfgPID.QtGui.QMainWindow,gui_w_cfgPID.Ui_MainWindow,basicWindow.BasicWindow):
+class CalibratePID(QtWidgets.QMainWindow,gui_w_cfgPID.Ui_MainWindow,basicWindow.BasicWindow):
     def __init__(self, w_main):
         super(CalibratePID, self).__init__()
         self.loadBasicObjects(w_main)  

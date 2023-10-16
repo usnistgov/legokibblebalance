@@ -2,6 +2,7 @@ import sys
 
 from PyQt5 import QtCore
 from PyQt5 import QtGui
+from PyQt5 import QtWidgets
 
 import configparser as cp
 import data as Data
@@ -61,7 +62,7 @@ if __name__ == "__main__":
     config = cp.ConfigParser()
     config.read('config.ini')
     
-    app = QtGui.QApplication(sys.argv)    
+    app = QtWidgets.QApplication(sys.argv)    
     
     window_main=w_main.MainWindow()    
     

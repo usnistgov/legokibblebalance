@@ -4,10 +4,11 @@ import pyqtgraph as pg
 
 import gui_w_cfgPos
 import basicWindow
+from PyQt5 import QtWidgets 
 
 
       
-class ConfigurePosition(gui_w_cfgPos.QtGui.QMainWindow,gui_w_cfgPos.Ui_MainWindow,basicWindow.BasicWindow):
+class ConfigurePosition(QtWidgets.QMainWindow,gui_w_cfgPos.Ui_MainWindow,basicWindow.BasicWindow):
     def __init__(self, w_main):
         super(ConfigurePosition,self).__init__()
         self.loadBasicObjects(w_main)

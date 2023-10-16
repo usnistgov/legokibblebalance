@@ -1,4 +1,4 @@
-from PyQt5 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 class BasicWindow:
     def loadBasicObjects(self, w_main):
@@ -18,7 +18,7 @@ class BasicWindow:
     def checkMoveWindow(self, xpos, ypos):
         
         #Can be moved To main
-        desktop = QtGui.QApplication.desktop()
+        desktop = QtWidgets.QApplication.desktop()
         nr_mainScreen = desktop.primaryScreen()
         mainScreen = desktop.screenGeometry(nr_mainScreen)
         

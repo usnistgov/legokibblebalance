@@ -1,9 +1,9 @@
 import gui_w_cfgVelomode
 import basicWindow
-
+from PyQt5 import QtWidgets 
 
       
-class VeloMode(gui_w_cfgVelomode.QtGui.QMainWindow,gui_w_cfgVelomode.Ui_MainWindow,basicWindow.BasicWindow):
+class VeloMode(QtWidgets.QMainWindow,gui_w_cfgVelomode.Ui_MainWindow,basicWindow.BasicWindow):
     def __init__(self, w_main):
         super(VeloMode,self).__init__()
         self.loadBasicObjects(w_main)

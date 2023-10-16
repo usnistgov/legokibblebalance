@@ -3,10 +3,10 @@ import numpy as np
 
 import gui_w_cfgShadowSensor
 import basicWindow
-from PyQt5 import QtCore
+from PyQt5 import QtCore,QtWidgets 
       
       
-class ConfigureShadowSensor(gui_w_cfgShadowSensor.QtGui.QMainWindow,\
+class ConfigureShadowSensor(QtWidgets.QMainWindow,\
                             gui_w_cfgShadowSensor.Ui_MainWindow,\
                             basicWindow.BasicWindow):
     def __init__(self, w_main):

@@ -1,3 +1,4 @@
+from PyQt5 import QtWidgets
 import gui_w_main
 
 import w_plot
@@ -19,7 +20,7 @@ import factoryReset
 
 
 
-class MainWindow(gui_w_main.QtGui.QMainWindow, gui_w_main.Ui_MainWindow):
+class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
     signalMainWindowClosed = gui_w_main.QtCore.pyqtSignal()    
     
     def __init__(self):
@@ -382,13 +383,13 @@ class MainWindow(gui_w_main.QtGui.QMainWindow, gui_w_main.Ui_MainWindow):
             self.signalMainWindowClosed.emit()
             event.accept()
         else:
-            result = gui_w_main.QtGui.QMessageBox.question(self,
+            result = gui_w_main.QtWidgets.QMessageBox.question(self,
                           "Confirm Exit...",
                           "Are you sure you want to exit ?",
-                          gui_w_main.QtGui.QMessageBox.Yes| gui_w_main.QtGui.QMessageBox.No)
+                          gui_w_main.QtWidgets.QMessageBox.Yes| gui_w_main.QtWidgets.QMessageBox.No)
             event.ignore()
     
-            if result == gui_w_main.QtGui.QMessageBox.Yes:
+            if result == gui_w_main.QtWidgets.QMessageBox.Yes:
                 
                 self.signalMainWindowClosed.emit()
                 self.myTimer.stop()

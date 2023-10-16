@@ -7,8 +7,9 @@ Created on Sun Feb 26 18:57:21 2017
 
 import gui_w_pathsAndVariables
 import basicWindow
+from PyQt5 import QtWidgets
 
-class PathsAndVariables(gui_w_pathsAndVariables.QtGui.QMainWindow,gui_w_pathsAndVariables.Ui_w_pathsAndVariables,basicWindow.BasicWindow):
+class PathsAndVariables(QtWidgets.QMainWindow,gui_w_pathsAndVariables.Ui_w_pathsAndVariables,basicWindow.BasicWindow):
     def __init__(self,w_main):
         super(PathsAndVariables,self).__init__()
         self.loadBasicObjects(w_main)
@@ -29,12 +30,12 @@ class PathsAndVariables(gui_w_pathsAndVariables.QtGui.QMainWindow,gui_w_pathsAnd
         self.windowShown=True
         
     def saveRestart(self):
-        result = gui_w_pathsAndVariables.QtGui.QMessageBox.question(self.myMainWindow,
+        result = gui_w_pathsAndVariables.QtWidgets.QMessageBox.question(self.myMainWindow,
                           "Save new Settings?",
                           "If you save the new Settings the Program will close and you have to restart manually.",
-                          gui_w_pathsAndVariables.QtGui.QMessageBox.Yes| gui_w_pathsAndVariables.QtGui.QMessageBox.No)
+                          gui_w_pathsAndVariables.QtWidgets.QMessageBox.Yes| gui_w_pathsAndVariables.QtWidgets.QMessageBox.No)
 
-        if result == gui_w_pathsAndVariables.QtGui.QMessageBox.Yes:
+        if result == gui_w_pathsAndVariables.QtWidgets.QMessageBox.Yes:
             self.myConfig['global']['armlength']=str(self.TB_Armlength.value())
             self.myConfig['global']['g']=str(self.TB_little_g.value())
             self.myConfig['global']['resistance']=str(self.TB_Resistance.value())

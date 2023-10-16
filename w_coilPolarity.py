@@ -7,8 +7,9 @@ Created on Fri Mar 03 14:46:57 2017
 
 import gui_w_coilPolarity
 import basicWindow
+from PyQt5 import QtWidgets
 
-class CoilPolarity(gui_w_coilPolarity.QtGui.QMainWindow,gui_w_coilPolarity.Ui_MainWindow,basicWindow.BasicWindow):
+class CoilPolarity(QtWidgets.QMainWindow,gui_w_coilPolarity.Ui_MainWindow,basicWindow.BasicWindow):
     def __init__(self,w_main):
         super(CoilPolarity,self).__init__()
         self.loadBasicObjects(w_main)

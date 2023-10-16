@@ -16,29 +16,29 @@ except AttributeError:
         return s
 
 try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
+    _encoding = QtWidgets.QApplication.UnicodeUTF8
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+        return QtWidgets.QApplication.translate(context, text, disambig)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.resize(273, 68)
-        self.centralwidget = QtGui.QWidget(MainWindow)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.gridLayout = QtGui.QGridLayout(self.centralwidget)
+        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.TXT_activecoil = QtGui.QLabel(self.centralwidget)
+        self.TXT_activecoil = QtWidgets.QLabel(self.centralwidget)
         self.TXT_activecoil.setAlignment(QtCore.Qt.AlignCenter)
         self.TXT_activecoil.setObjectName(_fromUtf8("TXT_activecoil"))
         self.gridLayout.addWidget(self.TXT_activecoil, 1, 0, 1, 2)
-        self.BTN_useCoilA = QtGui.QPushButton(self.centralwidget)
+        self.BTN_useCoilA = QtWidgets.QPushButton(self.centralwidget)
         self.BTN_useCoilA.setObjectName(_fromUtf8("BTN_useCoilA"))
         self.gridLayout.addWidget(self.BTN_useCoilA, 2, 0, 1, 1)
-        self.BTN_useCoilB = QtGui.QPushButton(self.centralwidget)
+        self.BTN_useCoilB = QtWidgets.QPushButton(self.centralwidget)
         self.BTN_useCoilB.setObjectName(_fromUtf8("BTN_useCoilB"))
         self.gridLayout.addWidget(self.BTN_useCoilB, 2, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)

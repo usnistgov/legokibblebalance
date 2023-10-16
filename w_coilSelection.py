@@ -29,7 +29,7 @@ class CoilSelector(object):
         elif coil == 'coilB':
             digitalOutBits = np.array([0,0,0,0,0,0,0,1], dtype=np.uint8)
         else:
-            print 'Invalid Coil!Select "coilA" or "coilB"'
+            print('Invalid Coil!Select "coilA" or "coilB"')
             return
 
         dtask = daq.Task()

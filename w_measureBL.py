@@ -2,8 +2,9 @@ import numpy as np
 
 import gui_w_measureBL
 import basicWindow
+from PyQt5 import QtWidgets
 
-class MeasureBL(gui_w_measureBL.QtGui.QMainWindow, gui_w_measureBL.Ui_MainWindow,basicWindow.BasicWindow):
+class MeasureBL(QtWidgets.QMainWindow, gui_w_measureBL.Ui_MainWindow,basicWindow.BasicWindow):
     def __init__(self, w_main):
         super(MeasureBL,self).__init__()
         self.loadBasicObjects(w_main)

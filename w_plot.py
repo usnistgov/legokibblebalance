@@ -1,7 +1,8 @@
 import gui_w_plot
 import basicWindow
+from PyQt5 import QtWidgets 
 
-class PlotWindow(gui_w_plot.QtGui.QMainWindow,gui_w_plot.Ui_MainWindow,basicWindow.BasicWindow):
+class PlotWindow(QtWidgets.QMainWindow,gui_w_plot.Ui_MainWindow,basicWindow.BasicWindow):
     def __init__(self, w_main, xydata, name,):
         super(PlotWindow,self).__init__()
         self.loadBasicObjects(w_main)    

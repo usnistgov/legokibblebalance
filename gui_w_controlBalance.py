@@ -7,7 +7,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -16,22 +16,22 @@ except AttributeError:
         return s
 
 try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
+    _encoding = QtWidgets.QApplication.UnicodeUTF8
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+        return QtWidgets.QApplication.translate(context, text, disambig)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.resize(312, 84)
-        self.centralwidget = QtGui.QWidget(MainWindow)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.gridLayout = QtGui.QGridLayout(self.centralwidget)
+        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.groupBox = QtGui.QGroupBox(self.centralwidget)
+        self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox.setObjectName(_fromUtf8("groupBox"))
         self.horizontalLayout = QtGui.QHBoxLayout(self.groupBox)
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
@@ -50,15 +50,15 @@ class Ui_MainWindow(object):
         self.LCD_analogOutput.setObjectName(_fromUtf8("LCD_analogOutput"))
         self.horizontalLayout.addWidget(self.LCD_analogOutput)
         self.gridLayout.addWidget(self.groupBox, 0, 1, 4, 1)
-        self.CB_usePIDFeedback = QtGui.QCheckBox(self.centralwidget)
+        self.CB_usePIDFeedback = QtWidgets.QCheckBox(self.centralwidget)
         self.CB_usePIDFeedback.setChecked(True)
         self.CB_usePIDFeedback.setObjectName(_fromUtf8("CB_usePIDFeedback"))
         self.gridLayout.addWidget(self.CB_usePIDFeedback, 0, 0, 1, 1)
-        self.CB_useInputBox = QtGui.QCheckBox(self.centralwidget)
+        self.CB_useInputBox = QtWidgets.QCheckBox(self.centralwidget)
         self.CB_useInputBox.setChecked(False)
         self.CB_useInputBox.setObjectName(_fromUtf8("CB_useInputBox"))
         self.gridLayout.addWidget(self.CB_useInputBox, 1, 0, 1, 1)
-        self.CB_useInputWheel = QtGui.QCheckBox(self.centralwidget)
+        self.CB_useInputWheel = QtWidgets.QCheckBox(self.centralwidget)
         self.CB_useInputWheel.setEnabled(False)
         self.CB_useInputWheel.setObjectName(_fromUtf8("CB_useInputWheel"))
         self.gridLayout.addWidget(self.CB_useInputWheel, 2, 0, 1, 1)

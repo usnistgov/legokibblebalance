@@ -7,7 +7,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -16,23 +16,23 @@ except AttributeError:
         return s
 
 try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
+    _encoding = QtWidgets.QApplication.UnicodeUTF8
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+        return QtWidgets.QApplication.translate(context, text, disambig)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.resize(677, 437)
-        self.centralwidget = QtGui.QWidget(MainWindow)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.groupBox_2 = QtGui.QGroupBox(self.centralwidget)
+        self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_2.setGeometry(QtCore.QRect(10, 10, 331, 201))
         self.groupBox_2.setObjectName(_fromUtf8("groupBox_2"))
-        self.BTN_start = QtGui.QPushButton(self.groupBox_2)
+        self.BTN_start = QtWidgets.QPushButton(self.groupBox_2)
         self.BTN_start.setGeometry(QtCore.QRect(10, 20, 151, 23))
         self.BTN_start.setObjectName(_fromUtf8("BTN_start"))
         self.T_Instructions = QtGui.QPlainTextEdit(self.groupBox_2)
@@ -40,11 +40,11 @@ class Ui_MainWindow(object):
         self.T_Instructions.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.T_Instructions.setReadOnly(True)
         self.T_Instructions.setObjectName(_fromUtf8("T_Instructions"))
-        self.BTN_confirm = QtGui.QPushButton(self.groupBox_2)
+        self.BTN_confirm = QtWidgets.QPushButton(self.groupBox_2)
         self.BTN_confirm.setEnabled(False)
         self.BTN_confirm.setGeometry(QtCore.QRect(190, 160, 131, 31))
         self.BTN_confirm.setObjectName(_fromUtf8("BTN_confirm"))
-        self.TXT_ready = QtGui.QLabel(self.groupBox_2)
+        self.TXT_ready = QtWidgets.QLabel(self.groupBox_2)
         self.TXT_ready.setEnabled(False)
         self.TXT_ready.setGeometry(QtCore.QRect(110, 170, 61, 31))
         palette = QtGui.QPalette()
@@ -60,7 +60,7 @@ class Ui_MainWindow(object):
         self.TXT_ready.setPalette(palette)
         self.TXT_ready.setAlignment(QtCore.Qt.AlignCenter)
         self.TXT_ready.setObjectName(_fromUtf8("TXT_ready"))
-        self.TXT_wait = QtGui.QLabel(self.groupBox_2)
+        self.TXT_wait = QtWidgets.QLabel(self.groupBox_2)
         self.TXT_wait.setEnabled(True)
         self.TXT_wait.setGeometry(QtCore.QRect(100, 150, 71, 31))
         palette = QtGui.QPalette()
@@ -89,7 +89,7 @@ class Ui_MainWindow(object):
         self.TB_value.setMaximum(1000000000.0)
         self.TB_value.setProperty("value", -1.0)
         self.TB_value.setObjectName(_fromUtf8("TB_value"))
-        self.groupBox_3 = QtGui.QGroupBox(self.centralwidget)
+        self.groupBox_3 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_3.setGeometry(QtCore.QRect(350, 10, 321, 201))
         self.groupBox_3.setObjectName(_fromUtf8("groupBox_3"))
         self.T_points = QtGui.QPlainTextEdit(self.groupBox_3)
@@ -109,14 +109,14 @@ class Ui_MainWindow(object):
         self.TB_degree.setMaximum(999999999)
         self.TB_degree.setProperty("value", -1)
         self.TB_degree.setObjectName(_fromUtf8("TB_degree"))
-        self.label_2 = QtGui.QLabel(self.groupBox_3)
+        self.label_2 = QtWidgets.QLabel(self.groupBox_3)
         self.label_2.setGeometry(QtCore.QRect(210, 10, 91, 16))
         self.label_2.setObjectName(_fromUtf8("label_2"))
-        self.BTN_fit = QtGui.QPushButton(self.groupBox_3)
+        self.BTN_fit = QtWidgets.QPushButton(self.groupBox_3)
         self.BTN_fit.setEnabled(False)
         self.BTN_fit.setGeometry(QtCore.QRect(210, 70, 101, 31))
         self.BTN_fit.setObjectName(_fromUtf8("BTN_fit"))
-        self.BTN_savefit = QtGui.QPushButton(self.groupBox_3)
+        self.BTN_savefit = QtWidgets.QPushButton(self.groupBox_3)
         self.BTN_savefit.setEnabled(False)
         self.BTN_savefit.setGeometry(QtCore.QRect(210, 110, 101, 31))
         self.BTN_savefit.setObjectName(_fromUtf8("BTN_savefit"))
@@ -125,13 +125,13 @@ class Ui_MainWindow(object):
         self.T_fitresult.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.T_fitresult.setReadOnly(True)
         self.T_fitresult.setObjectName(_fromUtf8("T_fitresult"))
-        self.groupBox_4 = QtGui.QGroupBox(self.centralwidget)
+        self.groupBox_4 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_4.setGeometry(QtCore.QRect(10, 210, 661, 221))
         self.groupBox_4.setObjectName(_fromUtf8("groupBox_4"))
         self.PW_fits = PlotWidget(self.groupBox_4)
         self.PW_fits.setGeometry(QtCore.QRect(10, 40, 641, 171))
         self.PW_fits.setObjectName(_fromUtf8("PW_fits"))
-        self.TXT_calculatedfit = QtGui.QLabel(self.groupBox_4)
+        self.TXT_calculatedfit = QtWidgets.QLabel(self.groupBox_4)
         self.TXT_calculatedfit.setGeometry(QtCore.QRect(10, 20, 81, 16))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(0, 170, 0))
@@ -149,7 +149,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.TXT_calculatedfit.setFont(font)
         self.TXT_calculatedfit.setObjectName(_fromUtf8("TXT_calculatedfit"))
-        self.label_5 = QtGui.QLabel(self.groupBox_4)
+        self.label_5 = QtWidgets.QLabel(self.groupBox_4)
         self.label_5.setGeometry(QtCore.QRect(100, 20, 71, 16))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(170, 0, 0))
@@ -167,7 +167,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.label_5.setFont(font)
         self.label_5.setObjectName(_fromUtf8("label_5"))
-        self.TXT_currentfit = QtGui.QLabel(self.groupBox_4)
+        self.TXT_currentfit = QtWidgets.QLabel(self.groupBox_4)
         self.TXT_currentfit.setGeometry(QtCore.QRect(170, 20, 331, 16))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(170, 0, 0))
@@ -185,7 +185,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.TXT_currentfit.setFont(font)
         self.TXT_currentfit.setObjectName(_fromUtf8("TXT_currentfit"))
-        self.TXT_currentfit_2 = QtGui.QLabel(self.groupBox_4)
+        self.TXT_currentfit_2 = QtWidgets.QLabel(self.groupBox_4)
         self.TXT_currentfit_2.setGeometry(QtCore.QRect(510, 20, 151, 16))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(170, 0, 0))

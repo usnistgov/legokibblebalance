@@ -1,8 +1,9 @@
 from __future__ import division
 import gui_w_dataAcqSettings
 import basicWindow
+from PyQt5 import QtWidgets
 
-class DataAcqSettings(gui_w_dataAcqSettings.QtGui.QMainWindow, gui_w_dataAcqSettings.Ui_MainWindow, basicWindow.BasicWindow):
+class DataAcqSettings(QtWidgets.QMainWindow, gui_w_dataAcqSettings.Ui_MainWindow, basicWindow.BasicWindow):
     def __init__(self, w_main):
         super(DataAcqSettings,self).__init__()
         self.loadBasicObjects(w_main)
@@ -35,12 +36,12 @@ class DataAcqSettings(gui_w_dataAcqSettings.QtGui.QMainWindow, gui_w_dataAcqSett
         self.LCD_callbacksPerPeriod.display((1/self.myMainWindow.mySine.getF())/(1/int(self.myConfig['dataacq']['samprate'])))
         
     def saveRestart(self):
-        result = gui_w_dataAcqSettings.QtGui.QMessageBox.question(self.myMainWindow,
+        result = gui_w_dataAcqSettings.QtWidgets.QMessageBox.question(self.myMainWindow,
                           "Save new Settings?",
                           "If you save the new Settings the Program will close and you have to restart manually.",
-                          gui_w_dataAcqSettings.QtGui.QMessageBox.Yes| gui_w_dataAcqSettings.QtGui.QMessageBox.No)
+                          gui_w_dataAcqSettings.QtWidgets.QMessageBox.Yes| gui_w_dataAcqSettings.QtWidgets.QMessageBox.No)
 
-        if result == gui_w_dataAcqSettings.QtGui.QMessageBox.Yes:
+        if result == gui_w_dataAcqSettings.QtWidgets.QMessageBox.Yes:
             self.myConfig['dataacq']['samprate'] = str(self.TB_samprate.value())
             self.myConfig['dataacq']['length'] = str(self.TB_length.value())
             self.myConfig['dataacq']['s'] = str(self.TB_maxlen.value())

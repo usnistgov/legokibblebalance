@@ -3,14 +3,14 @@
 from PyQt5 import QtGui
 
 def doFactoryReset(w_main, config):
-    question = QtGui.QMessageBox()
+    question = QtWidgets.QMessageBox()
     question.setWindowTitle("Confirm Factory Reset...")
     text = "Are you sure you want do a Factory-Reset and restore everything to default? \n Program will close afterwards"
     question.setText(text)
-    question.setStandardButtons(QtGui.QMessageBox.Yes)
-    question.addButton(QtGui.QMessageBox.No)
-    question.setDefaultButton(QtGui.QMessageBox.No)
-    if (question.exec_() == QtGui.QMessageBox.Yes):
+    question.setStandardButtons(QtWidgets.QMessageBox.Yes)
+    question.addButton(QtWidgets.QMessageBox.No)
+    question.setDefaultButton(QtWidgets.QMessageBox.No)
+    if (question.exec_() == QtWidgets.QMessageBox.Yes):
         resetFactory(config)
         w_main.prepareDesiredClose()
         w_main.close()
