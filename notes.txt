@@ -1,0 +1,30 @@
+callback.py:
+
+import PyDaqmx as daq
+
+needs to be replaced by nidaqmx
+
+
+This moudle is used in a total of three modules:
+
+callback.py:import PyDAQmx as daq
+devSelect.py:import PyDAQmx as daq
+w_coilSelection.py:import PyDAQmx as daq
+
+
+In all the w_xxxxx.py
+add  
+
+from PyQt5 import QtWidgets
+
+change gui_w_cfgPID.QtGui.QMainWindow to QtWidgets.QMainWindow,
+
+
+
+in ui_ 
+change QtGui.QSizePolicy to QtWidgets.QSizePolicy
+change QtGui.QWidget to QtWidgets.QWidget
+change QtGui.QTabWidget to QtWidgets.QTabWidget
+ QtGui.QPushButton to QtWidgets.QPushButton
+  QtGui.QLabel to QtWidgets.QLabel
+   QtGui.QGroupBox(
