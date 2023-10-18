@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from PyQt5 import QtGui
+from PyQt5 import QtGui,QtWidgets
 
 def doFactoryReset(w_main, config):
     question = QtWidgets.QMessageBox()

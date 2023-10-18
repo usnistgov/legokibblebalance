@@ -128,7 +128,7 @@ class PID():
     
     def setTarget(self, value):                         #set a target
         self.target = value
-        print("received new target: ",self.target)
+        #print("received new target: ",self.target)
 
     def setPIDSwitch(self, value):                      #set a new switchvalue
         print(value)

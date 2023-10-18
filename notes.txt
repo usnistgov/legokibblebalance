@@ -29,3 +29,14 @@ fart -r *.py QtGui.QLabel QtWidgets.QLabel
 fart -r *.py QtGui.QGroupBox QtWidgets.QGroupBox
 fart -r *.py QtGui.QRadioButton QtWidgets.QRadioButton
 fart -r *.py QtGui.QApplication QtWidgets.QApplication
+fart -r *.py QtGui.QVBoxLayout QtWidgets.QVBoxLayout
+fart -r *.py QtGui.QCheckBox QtWidgets.QCheckBox
+fart -r *.py QtGui.QMessageBox QtWidgets.QMessageBox
+fart -r *.py QtGui.QGridLayout QtWidgets.QGridLayout
+fart -r *.py QtGui.QLCDNumber QtWidgets.QLCDNumber
+fart -r *.py QtGui.QPlainTextEdit QtWidgets.QPlainTextEdit
+fart -r *.py QtGui.QSpacerItem QtWidgets.QSpacerItem
+fart -r *.py QtGui.QSpinBox QtWidgets.QSpinBox
+fart -r *.py QtGui.QLineEdit QtWidgets.QLineEdit
+fart -r *.py QtGui.QDoubleSpinBox QtWidgets.QDoubleSpinBox
+fart -r *.py QtGui.QAbstractSpinBox QtWidgets.QAbstractSpinBox

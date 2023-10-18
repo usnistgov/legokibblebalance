@@ -17,6 +17,7 @@ class CallbackTask(daq.Task, QtCore.QObject):
         self.myConfig = config              #Save given config object
         self.myCoilSelector = coilSelector
         self.mySine = sine        
+        print('callback here: Dev- ', self.myConfig['global']['device'])
         self.myDevice = self.myConfig['global']['device']
         #INITIALISE VARIABLES
         self.samprate = float(self.myConfig['dataacq']['samprate'])                 #Samples per sec and channel
