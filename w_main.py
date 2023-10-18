@@ -49,6 +49,7 @@ class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
     
     #Buttons-------------------------------------------------------------------
         #Graphs
+        self.BTN_rawphoto.clicked.connect(self.rawphoto_clicked)
         self.BTN_coilposition.clicked.connect(self.coilPosition_clicked)
         self.BTN_coilvelocities.clicked.connect(self.coilVelocities_clicked)
         self.BTN_voltageacrosscoils.clicked.connect(self.coilVoltages_clicked)
@@ -120,6 +121,19 @@ class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
         elif name == 'Current':
             self.TXT_current.setEnabled(False)
             
+
+
+    def rawphoto_clicked(self):
+        try:
+            if self.window_rawphoto.windowShown==True:
+                self.window_rawphoto.manualClose()
+            else:
+                raise Exception('Show that window')
+        except:
+            xydata = [['t','photoraw','D']]
+            name = ['Raw photo voltage','raw photo voltage']
+            self.rawphoto = w_plot.PlotWindow(self, xydata, name)
+            self.TXT_rawphoto.setEnabled(True)
 
             
         

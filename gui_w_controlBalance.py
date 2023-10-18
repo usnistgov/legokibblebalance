@@ -43,7 +43,7 @@ class Ui_MainWindow(object):
         self.TB_analogOutput.setDecimals(3)
         self.TB_analogOutput.setMinimum(-10.0)
         self.TB_analogOutput.setMaximum(10.0)
-        self.TB_analogOutput.setSingleStep(0.01)
+        self.TB_analogOutput.setSingleStep(0.5)
         self.TB_analogOutput.setObjectName(_fromUtf8("TB_analogOutput"))
         self.horizontalLayout.addWidget(self.TB_analogOutput)
         self.LCD_analogOutput = QtWidgets.QLCDNumber(self.groupBox)

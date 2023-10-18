@@ -93,6 +93,7 @@ class ProcessedData():
     def __init__(self, config):                                     #initialising data object for each input channel and t
         self.myConfig = config
     
+        self.photoraw = DataArrayWithFilt()
         self.ai0D = DataArrayWithFilt()
         self.ai1D = DataArrayWithFilt()
         self.ai2D = DataArrayWithFilt()
@@ -121,6 +122,7 @@ class ProcessedData():
         self.ai0rawlp = 0.01
         
     def setAllMaxlen(self, maxlen):
+        self.photoraw.setMaxlen(maxlen)
         self.ai0D.setMaxlen(maxlen)
         self.ai1D.setMaxlen(maxlen)
         self.ai2D.setMaxlen(maxlen)
@@ -153,6 +155,7 @@ class ProcessedData():
 
         self.ai0raw = self.ai0raw*(1.0-self.ai0rawlp)+self.ai0rawlp*np.mean(self.ai0)
         self.ai0D.addData(self.ai0-float(self.myConfig['global']['balance0photooffset']))
+        self.photoraw.addData(self.ai0)
         self.ai1D.addData(self.ai1)
         self.ai2D.addData(self.ai2)
         self.ai6D.addData(self.ai6)
@@ -222,6 +225,9 @@ class ProcessedData():
             returnarray = self.bl0_t
         elif name == 'cbdt':
             returnarray = self.cbdt
+        elif name == 'photoraw':
+            returnarray = self.photoraw
+
         else:
             print('ERROR: Choose From t,ai0,ai1,ai2,ai6,posA,PosB,veloA,veloB,sine,bl0,bl0_t,cbdt and NOT:', name)  
         
