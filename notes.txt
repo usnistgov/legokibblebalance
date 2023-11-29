@@ -1,3 +1,7 @@
+* Rework the instllation instructions.
+* Anti windup fir integrator
+
+
 callback.py:
 
 import PyDaqmx as daq
