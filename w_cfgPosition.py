@@ -48,6 +48,7 @@ class ConfigurePosition(QtWidgets.QMainWindow,gui_w_cfgPos.Ui_MainWindow,basicWi
         self.TXT_currentfit.setText(self.myConfig['global']['posfit'])
         self.fitDisplayRange = np.arange(self.myMin,self.myMax,0.0001)
         self.plotCurrentfit = self.PW_fits.plotItem.plot(self.fitDisplayRange,np.polyval(self.currentFit,self.fitDisplayRange), pen= 'r')
+        self.PW_fits.setBackground('w') 
         self.newFit = self.PW_fits.plotItem.plot([0],[0],pen='g')
         self.fitPoints = pg.ScatterPlotItem(brush=None, symbol='x')     
         self.PW_fits.addItem(self.fitPoints)
