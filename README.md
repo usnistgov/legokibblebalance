@@ -60,6 +60,8 @@ python setup.py install
 
 conda install -c anaconda pyqtgraph 
 
+You might need administrator privileges
+
 
 # Things to do
 
