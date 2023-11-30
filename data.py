@@ -2,7 +2,6 @@ from __future__ import division
 import numpy as np
 import scipy.signal
 
-
 class DataArray(object):                                          #class creating a data object
     def __init__(self):                             #containing arrays for data and filtered data
         self.data = np.zeros(1)
@@ -227,6 +226,7 @@ class ProcessedData():
             returnarray = self.cbdt
         elif name == 'photoraw':
             returnarray = self.photoraw
+            
 
         else:
             print('ERROR: Choose From t,ai0,ai1,ai2,ai6,posA,PosB,veloA,veloB,sine,bl0,bl0_t,cbdt and NOT:', name)  

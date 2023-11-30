@@ -77,7 +77,7 @@ class PID():
         self.deriv =  newderiv *(1-self.filtfac) +self.filtfac* self.deriv 
                       
         self.output = P *self.eps + self.su + D* self.deriv
-#        print("% 08.5f\t% 05.2f\t% 05.2f\t% 05.2f\t% 05.2f\t% 05.2f\t% 05.2f\t% 08.5f\t%s\t% 05.2f\t% 05.2f\t% 05.2f"%(self.eps,self.output,P *self.eps,self.su,D*self.deriv,self.deriv,newderiv,self.pid_dt,self.PIDmode,P,I,D))
+#       print("% 08.5f\t% 05.2f\t% 05.2f\t% 05.2f\t% 05.2f\t% 05.2f\t% 05.2f\t% 08.5f\t%s\t% 05.2f\t% 05.2f\t% 05.2f"%(self.eps,self.output,P *self.eps,self.su,D*self.deriv,self.deriv,newderiv,self.pid_dt,self.PIDmode,P,I,D))
         if self.output> self.maxoutput:                 #ensuring output is within maxout
             self.output = self.maxoutput
         elif self.output<(-1*self.maxoutput):
@@ -92,7 +92,7 @@ class PID():
             self.lastXSecondEps = self.lastXSecondEps[-self.x*self.calcsPerSecond:]
         
     def setPID(self, value, name, mode):                #set P I or D coarse/fine
-        print('setPID(',value,name,mode,')')
+        #print('setPID(',value,name,mode,')')
         if mode == 'fine':
             if name == 'p':
                 self.P_fine = value
@@ -131,7 +131,7 @@ class PID():
         #print("received new target: ",self.target)
 
     def setPIDSwitch(self, value):                      #set a new switchvalue
-        print(value)
+        #print(value)
         self.PIDSwitchValue = abs(value)
         self.printValues()
         

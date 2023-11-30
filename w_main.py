@@ -132,10 +132,10 @@ class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
         except:
             xydata = [['t','photoraw','D']]
             name = ['Raw photo voltage','raw photo voltage']
-            self.rawphoto = w_plot.PlotWindow(self, xydata, name)
+            self.window_rawphoto = w_plot.PlotWindow(self, xydata, name)
             self.TXT_rawphoto.setEnabled(True)
 
-            
+           
         
     def coilPosition_clicked(self):
         try:

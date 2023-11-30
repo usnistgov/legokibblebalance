@@ -5,6 +5,8 @@ from PyQt5 import QtWidgets
 class PlotWindow(QtWidgets.QMainWindow,gui_w_plot.Ui_MainWindow,basicWindow.BasicWindow):
     def __init__(self, w_main, xydata, name,):
         super(PlotWindow,self).__init__()
+        self.callco=0
+        self.urate =2
         self.loadBasicObjects(w_main)    
         self.setupUi(self)                     #Is used to determine if window is open or closed
         
@@ -37,7 +39,11 @@ class PlotWindow(QtWidgets.QMainWindow,gui_w_plot.Ui_MainWindow,basicWindow.Basi
         self.show()
         self.windowShown=True   
 
-    def updateGraphs(self):                                                         #updating graphs 
+    def updateGraphs(self): 
+        self.callco+=1
+        if self.callco<self.urate:
+            return
+        self.callco=0
         self.x1 = self.getDataFromArray(self.xydata[0][0],'D')
         self.y1 = self.getDataFromArray(self.xydata[0][1],self.xydata[0][2])
         self.curve1 = self.myData.correctSize(self.x1,self.y1)

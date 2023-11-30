@@ -77,7 +77,7 @@ class CallbackTask(daq.Task, QtCore.QObject):
 #        self.veloPID = PID.PID(False,self.PID_velo,self.PID_velo,1,self.dt,self.veloPIDwidth,self.Ilimit,self.target,self.maxoutputvelo) 
 
         #Creates 4 Input Channels to read ai0, ai1, ai2, ai6
-        self.CreateAIVoltageChan(self.myDevice +"/ai3","",daq.DAQmx_Val_Diff,-1.0,1.0,daq.DAQmx_Val_Volts,None)
+        #self.CreateAIVoltageChan(self.myDevice +"/ai3","",daq.DAQmx_Val_Diff,-1.0,1.0,daq.DAQmx_Val_Volts,None)
         self.CreateAIVoltageChan(self.myDevice +"/ai0","",daq.DAQmx_Val_Diff,-1.0,1.0,daq.DAQmx_Val_Volts,None)
         self.CreateAIVoltageChan(self.myDevice +"/ai1","",daq.DAQmx_Val_Diff,-1.0,1.0,daq.DAQmx_Val_Volts,None)
         self.CreateAIVoltageChan(self.myDevice +"/ai2","",daq.DAQmx_Val_RSE,-1.0,1.0,daq.DAQmx_Val_Volts,None)
@@ -119,11 +119,11 @@ class CallbackTask(daq.Task, QtCore.QObject):
                 #sign = int(self.myConfig[self.myCoilSelector.getWeightCoil]['polarity'])
                 if self.co==0:
                     self.sign = int(self.myConfig['coil'+self.myCoilSelector.getWeightCoil()]['polarity'])
-                if self.co==0:
-                    print(currentShadowVoltage,
-                          self.photooffset,
-                          self.staticPID.target,
-                          self.sign,self.myCoilSelector.getWeightCoil())
+#                if self.co==0:
+ #                   print(currentShadowVoltage,
+  #                        self.photooffset,
+   #                       self.staticPID.target,
+    #                      self.sign,self.myCoilSelector.getWeightCoil())
                 self.setVoltage(self.output*self.sign)    
                 
             elif self.mode == 'velo':
