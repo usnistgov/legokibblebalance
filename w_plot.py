@@ -29,6 +29,8 @@ class PlotWindow(QtWidgets.QMainWindow,gui_w_plot.Ui_MainWindow,basicWindow.Basi
         self.y1 = self.getDataFromArray(self.xydata[0][1],self.xydata[0][2])
         self.curve1 = self.myData.correctSize(self.x1,self.y1)
         self.plot1 = self.PW.plotItem.plot(*self.curve1,pen = 'b')
+        self.PW.setBackground('w') 
+        #self.PW.set_background_color("white")
 
         if self.nrofgraphs == 2:                                                    #setting up graph2 if needed
             self.x2 = self.getDataFromArray(self.xydata[1][0],'D')
