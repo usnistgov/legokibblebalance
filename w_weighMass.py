@@ -26,6 +26,9 @@ class WeighMass(QtWidgets.QMainWindow,gui_w_weighMass.Ui_MainWindow,basicWindow.
         self.iArray = self.myData.giveDataArray('current')
         self.bl = float(self.myConfig[activeCoil]['bl0'])
         self.g = float(self.myConfig['global']['g'])
+        self.T_result.setPlainText('Using coil: {0} wiht bl={1:4.2f}'.\
+                                   format(activeCoil,self.bl))
+
         
 
         self.BTN_start.clicked.connect(self.start)
@@ -61,7 +64,9 @@ class WeighMass(QtWidgets.QMainWindow,gui_w_weighMass.Ui_MainWindow,basicWindow.
         
     def doZR1(self):
         activeCoil = self.myConfig['global']['activecoil']
-        self.T_result.setPlainText('Now put your mass on coil'+ self.myCoilSelector.getWeightCoil(activeCoil)+' and weigh it!')
+        
+        self.T_result.setPlainText('Now put your mass on coil'+\
+                                   self.myCoilSelector.getWeightCoil()+' and weigh it!')
         
         #ZEROREADING 1
         self.iZR1 = self.iArray.giveLastData()
@@ -81,7 +86,8 @@ class WeighMass(QtWidgets.QMainWindow,gui_w_weighMass.Ui_MainWindow,basicWindow.
         i = self.iWM - self.iZR1
         mass = self.polarity()*((self.bl * i)/self.g)
         
-        self.T_result.appendPlainText('The first guess for your mass : '+ str(mass) +' g')
+        self.T_result.appendPlainText(\
+                'The first guess for your mass : {0:6.1f} g'.format(abs(mass)))
         
         self.step = 3 
         self.BTN_WM.setEnabled(False)
@@ -97,7 +103,13 @@ class WeighMass(QtWidgets.QMainWindow,gui_w_weighMass.Ui_MainWindow,basicWindow.
         i = self.iWM - ((self.iZR1+self.iZR2)/2)
         mass = self.polarity()*((self.bl * i)/self.g)
         
-        self.T_result.appendPlainText('It is: '+ str(mass) +' g')
+        self.T_result.appendPlainText('It is: {0:6.2f} g'.format(abs(mass)))
+        #self.T_result.appendPlainText('\n Calcualted from:\n')
+        
+        #self.T_result.appendPlainText('i={0:9.3f} mA\n'.format(i))
+        #self.T_result.appendPlainText('bl={0:9.3f} Tm\n'.format(self.bl))
+        #self.T_result.appendPlainText('g={0:9.3f} m/s^2\n'.format(self.g))
+
         self.step = 0
         self.BTN_ZR2.setEnabled(False)
         self.TXT_readyZR2.setEnabled(False)

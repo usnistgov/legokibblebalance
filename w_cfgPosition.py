@@ -77,6 +77,7 @@ class ConfigurePosition(QtWidgets.QMainWindow,gui_w_cfgPos.Ui_MainWindow,basicWi
         self.TB_degree.setEnabled(False)
         self.BTN_fit.setEnabled(False)
         self.setBalanceUiReady(True)
+        
 
         
     def multiconnect(self):
@@ -96,12 +97,14 @@ class ConfigurePosition(QtWidgets.QMainWindow,gui_w_cfgPos.Ui_MainWindow,basicWi
             self.T_Instructions.setPlainText('Please Input below:')
             self.T_Instructions.appendPlainText('Number of Samplepoints to take.')
             self.T_Instructions.appendPlainText('! Number must be bigger than 3 and odd !')
+            self.TB_value.setValue(5)
             self.status = 'getSampleNr()'
         else: 
             self.T_Instructions.setPlainText('ERROR: Walldistance must be bigger than 0!')
 
     def getSampleNr(self):
         samplesize = int(self.TB_value.value())
+        print(samplesize,'...',self.TB_value.value())
         if samplesize >= 3:
                 if self.isOdd(samplesize):
                     self.pco = samplesize
@@ -144,7 +147,6 @@ class ConfigurePosition(QtWidgets.QMainWindow,gui_w_cfgPos.Ui_MainWindow,basicWi
             self.pointHeights.append(value)
             self.pt +=1
             self.pco -=1
-            prinT(self.pco)
             self.instructions()
         else:
             self.T_Instructions.appendPlainText('ERROR')
@@ -211,12 +213,11 @@ class ConfigurePosition(QtWidgets.QMainWindow,gui_w_cfgPos.Ui_MainWindow,basicWi
 
         
     def calcMeasurementPos(self, number):
-        toCalc = (number-1)/2
+        toCalc = (number-1)//2
         fromMinToZero = np.linspace(self.myMin,self.myZeroposition,toCalc,False)
         fromZeroToMax = np.linspace(self.myZeroposition,self.myMax,toCalc+1,True)
         measurementPos = np.hstack((fromMinToZero,fromZeroToMax))
         returnlist = measurementPos.tolist()
-        print(returnlist)
         return returnlist      
         
     def calcPos(self):
@@ -224,13 +225,10 @@ class ConfigurePosition(QtWidgets.QMainWindow,gui_w_cfgPos.Ui_MainWindow,basicWi
         relPos = []
         pos = []
         for heightpoint in self.pointHeights:
-            print(heightpoint, zeroheight, heightpoint-zeroheight)
             relPos.append(heightpoint - zeroheight)
-        print(relPos)
         for rp in relPos:
             h = (rp/self.wallDistance)*self.armLength
             pos.append(h)
-        print(pos)
         return pos
         
 

@@ -159,7 +159,7 @@
       <double>1000.000000000000000</double>
      </property>
     </widget>
-    <widget class="QPushButton" name="BTN_savePIDvelo">
+    <widget class="QPushButton" name="BTN_save">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -172,7 +172,7 @@
       <string>Save</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="BTN_loadPIDvelo">
+    <widget class="QPushButton" name="BTN_load">
      <property name="geometry">
       <rect>
        <x>160</x>
@@ -194,7 +194,7 @@
        <height>31</height>
       </rect>
      </property>
-     <property name="numDigits">
+     <property name="digitCount">
       <number>10</number>
      </property>
     </widget>
@@ -220,7 +220,7 @@
        <height>31</height>
       </rect>
      </property>
-     <property name="numDigits">
+     <property name="digitCount">
       <number>10</number>
      </property>
     </widget>
@@ -246,7 +246,7 @@
        <height>31</height>
       </rect>
      </property>
-     <property name="numDigits">
+     <property name="digitCount">
       <number>10</number>
      </property>
     </widget>
@@ -276,19 +276,6 @@
     <property name="title">
      <string>Sine Curve</string>
     </property>
-    <widget class="QPushButton" name="BTN_saveAF">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>140</y>
-       <width>201</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Save Amplitude and Frequency</string>
-     </property>
-    </widget>
     <widget class="QLCDNumber" name="LCD_validRange">
      <property name="geometry">
       <rect>
@@ -298,7 +285,7 @@
        <height>31</height>
       </rect>
      </property>
-     <property name="numDigits">
+     <property name="digitCount">
       <number>5</number>
      </property>
     </widget>
@@ -397,7 +384,7 @@
        <height>31</height>
       </rect>
      </property>
-     <property name="numDigits">
+     <property name="digitCount">
       <number>3</number>
      </property>
     </widget>
@@ -412,19 +399,6 @@
      </property>
      <property name="text">
       <string>Frequency in Hz:</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="BTN_loadAF">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>170</y>
-       <width>201</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Load Amplitude and Frequency</string>
      </property>
     </widget>
    </widget>

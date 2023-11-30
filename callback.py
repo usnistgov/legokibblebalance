@@ -194,39 +194,30 @@ class CallbackTask(daq.Task, QtCore.QObject):
         vtask.StopTask()
         
     def getDoPID(self):                     #Returns the value, which determinse if feedback is enabled
-        print('gdopid')
         return self.doPID
         
     def setDoPID(self, value):              #Sets the value, which determinse if feedback is enabled
         self.doPID = value
-        print('sdopid')
         
     def getPIDmode(self):                   #Return the current PID mode
-        print('gpidm')
         return self.mode
         
     def switchToVelo(self):
-        print('stv')
         self.mode = 'velo'
         
     def switchToStatic(self):
-        print( 'sts')
         self.mode = 'static'
         
     def giveStaticPID(self):                      #Returns the generated static PID object
-        print('gspid')
         return self.staticPID
         
     def giveVeloPID(self):                        #Returns the generated velo PID object
-        print('gvpid')
         return self.veloPID
         
     def getL(self):                         #Returns L
-        print('gl')
         return self.L
         
     def getDt(self):                        #Returns Dt
-        print('gdt')
         return self.dt
         
 #    def getOffset(self):                    #Returns Offset
@@ -234,7 +225,6 @@ class CallbackTask(daq.Task, QtCore.QObject):
 #        return self.offset
         
     def getSamprate(self):
-        print('gsmpr')
         return self.samprate
 #        
 #    def getControlViaTarget(self):

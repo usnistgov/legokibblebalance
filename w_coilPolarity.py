@@ -48,8 +48,8 @@ class CoilPolarity(QtWidgets.QMainWindow,gui_w_coilPolarity.Ui_MainWindow,basicW
         else:
             self.polarity_coilA = "-1"
             self.myConfig['coilA']['polarity']="-1"
-            
-        print(self.polarity_coilA)
+        with open('config.ini', 'w') as configfile:
+            self.myConfig.write(configfile)
             
     def polaritiesBChanged(self):
         if self.RDB_B_pos.isChecked():
@@ -58,8 +58,8 @@ class CoilPolarity(QtWidgets.QMainWindow,gui_w_coilPolarity.Ui_MainWindow,basicW
         else:
             self.polarity_coilB = "-1"
             self.myConfig['coilB']['polarity']="-1"
-        
-        print(self.polarity_coilB)
+        with open('config.ini', 'w') as configfile:
+            self.myConfig.write(configfile)
         
     def manualClose(self):
         self.windowShown = False    

@@ -16,16 +16,10 @@ class VeloMode(QtWidgets.QMainWindow,gui_w_cfgVelomode.Ui_MainWindow,basicWindow
 #        #INITIALISING:
         self.myVeloPID = self.myTask.giveVeloPID()
      
-        self.TB_amp.setValue(float(self.myConfig['global']['velo_amp']))
-        self.TB_freq.setValue(float(self.myConfig['global']['velo_freq']))
+        self.load()
         self.LCD_validRange.display(self.myData.convertVoltToMM(float(self.myConfig['global']['valRange'])))
         self.LCD_period.display(1/self.TB_freq.value())
- 
-        activeCoil = self.myConfig['global']['activecoil']
-        self.TB_P_velo.setValue(float(self.myConfig[activeCoil]['p_velo']))
-        self.TB_I_velo.setValue(float(self.myConfig[activeCoil]['i_velo']))
-        self.TB_D_velo.setValue(float(self.myConfig[activeCoil]['d_velo']))
-        
+         
         self.sinePlot = self.PW_sine.plotItem.plot([],[],pen = 'g')
         
         #CONNECTING BUTTONS AND SIGNALS:
@@ -36,9 +30,8 @@ class VeloMode(QtWidgets.QMainWindow,gui_w_cfgVelomode.Ui_MainWindow,basicWindow
         self.TB_I_velo.valueChanged.connect(self.setPIDs)
         self.TB_D_velo.valueChanged.connect(self.setPIDs)
         
-        self.BTN_saveAF.clicked.connect(self.saveAF)   
-        self.BTN_loadPIDvelo.clicked.connect(self.loadPID)
-        self.BTN_savePIDvelo.clicked.connect(self.savePID)
+        self.BTN_save.clicked.connect(self.save)   
+        self.BTN_load.clicked.connect(self.load)
         
         self.myTimer.timeout.connect(self.updateWindow)
                 
@@ -61,34 +54,34 @@ class VeloMode(QtWidgets.QMainWindow,gui_w_cfgVelomode.Ui_MainWindow,basicWindow
         self.mySine.setAF(a,f)
         self.LCD_period.display(1/f)
         
-    def saveAF(self):
-        print('saved')
-        a = str(self.TB_amp.value())
-        f = str(self.TB_freq.value())
-        self.myConfig['global']['velo_freq'] = f
-        self.myConfig['global']['velo_amp'] = a
-        with open('config.ini', 'w') as configfile:
-            self.myConfig.write(configfile)
        
     def setPIDs(self):
         self.myVeloPID.setPID(self.TB_P_velo.value(),'p','velo')
         self.myVeloPID.setPID(self.TB_I_velo.value(),'i','velo')
         self.myVeloPID.setPID(self.TB_D_velo.value(),'d','velo')
        
-    def savePID(self):
-        print('saved')
+    def save(self):
         activeCoil = self.myConfig['global']['activecoil']
+        a = str(self.TB_amp.value())
+        f = str(self.TB_freq.value())
+        self.myConfig['global']['velo_freq'] = f
+        self.myConfig['global']['velo_amp'] = a
         self.myConfig[activeCoil]['P_velo']=str(self.TB_P_velo.value())
         self.myConfig[activeCoil]['I_velo']=str(self.TB_I_velo.value())
         self.myConfig[activeCoil]['D_velo']=str(self.TB_D_velo.value())
         with open('config.ini', 'w') as configfile:
             self.myConfig.write(configfile)
+
         
-    def loadPID(self):  
+    def load(self):  
         activeCoil = self.myConfig['global']['activecoil']
         self.TB_P_velo.setValue(float(self.myConfig[activeCoil]['P_velo']))
         self.TB_I_velo.setValue(float(self.myConfig[activeCoil]['I_velo']))
         self.TB_D_velo.setValue(float(self.myConfig[activeCoil]['D_velo']))
+        self.TB_freq.setValue(float(self.myConfig['global']['velo_freq']))
+        self.TB_amp.setValue(float(self.myConfig['global']['velo_amp']))
+        self.setAF()
+
 
             
     def manualClose(self):

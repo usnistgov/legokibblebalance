@@ -25,9 +25,9 @@ class CoilSelector(object):
     def selectCoil(self, coil):
         self.updateText('coilA')
         if coil == 'coilA':
-            digitalOutBits = np.array([0,0,0,0,0,0,0,0], dtype=np.uint8)
-        elif coil == 'coilB':
             digitalOutBits = np.array([0,0,0,0,0,0,0,1], dtype=np.uint8)
+        elif coil == 'coilB':
+            digitalOutBits = np.array([0,0,0,0,0,0,0,0], dtype=np.uint8)
         else:
             print('Invalid Coil!Select "coilA" or "coilB"')
             return

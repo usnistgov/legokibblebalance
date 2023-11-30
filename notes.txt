@@ -1,6 +1,12 @@
 * Rework the instllation instructions.
 * Anti windup fir integrator
-*
+
+
+BUGS:
+* When I close configure velomode it kicked it out of velo mode
+
+
+
 
 callback.py:
 
