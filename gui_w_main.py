@@ -222,7 +222,7 @@ class Ui_MainWindow(object):
         self.TXT_coilVoltage.setObjectName("TXT_coilVoltage")
         self.TXT_current = QtWidgets.QLabel(self.groupBox)
         self.TXT_current.setEnabled(False)
-        self.TXT_current.setGeometry(QtCore.QRect(140, 140, 61, 31))
+        self.TXT_current.setGeometry(QtCore.QRect(150, 140, 61, 31))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(46, 194, 5))
         brush.setStyle(QtCore.Qt.SolidPattern)
