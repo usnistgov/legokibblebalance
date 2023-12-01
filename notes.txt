@@ -1,11 +1,8 @@
 * Rework the instllation instructions.
 * Anti windup fir integrator
-* Put velos in mm/s
 * reset integrator button in cfg velo mode
 * units on the graphs
 
-* double divide for window position
-veloB in w_measureBL
 
 
 BUGS:
@@ -15,7 +12,6 @@ BUGS:
 
 Tatjana Wishlist:
 *Larger main window
-*Grid on the pygraphs
 *Lock scale button for w_plots
 
 

@@ -24,12 +24,15 @@ class PlotWindow(QtWidgets.QMainWindow,gui_w_plot.Ui_MainWindow,basicWindow.Basi
         self.TXT_plot1.setText(name[1])
         if self.nrofgraphs == 2:
             self.TXT_plot2.setText(name[2])
-        
+
+        self.PW.setBackground('w')         
         self.x1 = self.getDataFromArray(self.xydata[0][0],'D')        #setting up graph1
         self.y1 = self.getDataFromArray(self.xydata[0][1],self.xydata[0][2])
         self.curve1 = self.myData.correctSize(self.x1,self.y1)
         self.plot1 = self.PW.plotItem.plot(*self.curve1,pen = 'b')
-        self.PW.setBackground('w') 
+        self.PW.showGrid(x = True, y = True, alpha = 1)                                        
+
+        #self.PW.set_grid(True)
         #self.PW.set_background_color("white")
 
         if self.nrofgraphs == 2:                                                    #setting up graph2 if needed

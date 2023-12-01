@@ -1,7 +1,6 @@
 """
 Ho
 """
-s
 
 import sys
 import os
