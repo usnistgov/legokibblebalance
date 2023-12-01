@@ -22,7 +22,7 @@ class CallbackTask(daq.Task, QtCore.QObject):
         #INITIALISE VARIABLES
         self.samprate = float(self.myConfig['dataacq']['samprate'])                 #Samples per sec and channel
         self.L =int(self.myConfig['dataacq']['length'])                           #Samples to read per channel
-        self.NrOfCh=5                      #Channels used for reading
+        self.NrOfCh=4                      #Channels used for reading
         self.totalL=self.L*self.NrOfCh      #Samples read per Callback
         self.dt = 1.0/self.samprate              #Time between Samples
         self.rawdata = np.zeros(self.totalL)#Array to read rawdata into
@@ -98,7 +98,6 @@ class CallbackTask(daq.Task, QtCore.QObject):
         self.ReadAnalogF64(self.L,10.0,daq.DAQmx_Val_GroupByScanNumber,self.rawdata,self.totalL,daq.byref(read),None)
         
         #Sorts rawdata to their respective channel        
-#        self.myData.storeRawData(self.rawdata, self.NrOfCh, self.dt, self.L, self.delta)
         self.signalRawdata.emit(self.rawdata, self.NrOfCh, self.dt, self.L, self.delta)
         self.fbSSV = ((self.rawdata[0::self.NrOfCh])[-1])-self.photooffset
         #self.myData.calcVelocities(self.dt)

@@ -1,4 +1,6 @@
 import sys
+import os
+import shutil
 
 from PyQt5 import QtCore
 from PyQt5 import QtGui
@@ -59,9 +61,12 @@ if __name__ == "__main__":
     
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     #Read configfile
+    
+    if os.path.isfile('config.ini')==False:
+        shutil.copy('config_original.ini','config.ini')
+        
     config = cp.ConfigParser()
     config.read('config.ini')
-    
     app = QtWidgets.QApplication(sys.argv)    
     
     window_main=w_main.MainWindow()    

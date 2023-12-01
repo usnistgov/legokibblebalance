@@ -1,5 +1,14 @@
 * Rework the instllation instructions.
 * Anti windup fir integrator
+* Put velos in mm/s
+
+
+*If there is no config.ini make one from config_original.ini
+
+* Delete config.ini from git
+
+* double divide for window position
+veloB in w_measureBL
 
 
 BUGS:
@@ -7,46 +16,23 @@ BUGS:
 
 
 
-
-callback.py:
-
-import PyDaqmx as daq
-
-needs to be replaced by nidaqmx
+Tatjana Wishlist:
+*Larger main window
+*Grid on the pygraphs
+*Lock scale button for w_plots
 
 
-This moudle is used in a total of three modules:
-
-callback.py:import PyDAQmx as daq
-devSelect.py:import PyDAQmx as daq
-w_coilSelection.py:import PyDAQmx as daq
+10, 40,2
+20,400,3
 
 
-In all the w_xxxxx.py
-add  
-
-from PyQt5 import QtWidgets
-
-change gui_w_cfgPID.QtGui.QMainWindow to QtWidgets.QMainWindow,
-
-
-fart -r *.py QtGui.QSizePolicy QtWidgets.QSizePolicy
-fart -r *.py "from PyQt5 import QtCore, QtGui" "from PyQt5 import QtCore, QtGui, QtWidgets"
-fart -r *.py QtGui.QWidget QtWidgets.QWidget
-fart -r *.py QtGui.QTabWidget QtWidgets.QTabWidget
-fart -r *.py QtGui.QPushButton QtWidgets.QPushButton
-fart -r *.py QtGui.QLabel QtWidgets.QLabel
-fart -r *.py QtGui.QGroupBox QtWidgets.QGroupBox
-fart -r *.py QtGui.QRadioButton QtWidgets.QRadioButton
-fart -r *.py QtGui.QApplication QtWidgets.QApplication
-fart -r *.py QtGui.QVBoxLayout QtWidgets.QVBoxLayout
-fart -r *.py QtGui.QCheckBox QtWidgets.QCheckBox
-fart -r *.py QtGui.QMessageBox QtWidgets.QMessageBox
-fart -r *.py QtGui.QGridLayout QtWidgets.QGridLayout
-fart -r *.py QtGui.QLCDNumber QtWidgets.QLCDNumber
-fart -r *.py QtGui.QPlainTextEdit QtWidgets.QPlainTextEdit
-fart -r *.py QtGui.QSpacerItem QtWidgets.QSpacerItem
-fart -r *.py QtGui.QSpinBox QtWidgets.QSpinBox
-fart -r *.py QtGui.QLineEdit QtWidgets.QLineEdit
-fart -r *.py QtGui.QDoubleSpinBox QtWidgets.QDoubleSpinBox
-fart -r *.py QtGui.QAbstractSpinBox QtWidgets.QAbstractSpinBox
+8:30 pick up
+8:45 testing
+10:00 balance will work
+10:00-12:00 learning sesssion
+12:00 -1:00 lunch
+1:00 - 3:00 learning/ debugging
+3:00- 4:00 talk
+4:00 - 6:00 loose ends on Legos
+6:00 leave for airport
+6:30 be at airport 

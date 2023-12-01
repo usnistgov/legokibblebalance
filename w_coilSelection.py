@@ -11,23 +11,28 @@ class CoilSelector(object):
     def coilInit(self):
         self.selectCoil(self.myConfig['global']['activecoil'])
         if self.myConfig['global']['activecoil'] == 'coilA':
-            self.myMainWindow.RB_coilB.setChecked(True)
-        else:
             self.myMainWindow.RB_coilA.setChecked(True)
+        else:
+            self.myMainWindow.RB_coilB.setChecked(True)
+        
 
     def useCoilA(self):
-        self.selectCoil('coilB')
+        self.selectCoil('coilA')
         
     def useCoilB(self):
-        self.selectCoil('coilA')
+        self.selectCoil('coilB')
         
         
     def selectCoil(self, coil):
-        self.updateText('coilA')
+        self.myConfig['global']['activecoil'] = str(coil)
+        with open('config.ini','w') as cfg:
+            self.myConfig.write(cfg)
         if coil == 'coilA':
-            digitalOutBits = np.array([0,0,0,0,0,0,0,1], dtype=np.uint8)
-        elif coil == 'coilB':
+            self.updateText('coilA')
             digitalOutBits = np.array([0,0,0,0,0,0,0,0], dtype=np.uint8)
+        elif coil == 'coilB':
+            self.updateText('coilB')
+            digitalOutBits = np.array([0,0,0,0,0,0,0,1], dtype=np.uint8)
         else:
             print('Invalid Coil!Select "coilA" or "coilB"')
             return
@@ -38,9 +43,7 @@ class CoilSelector(object):
         dtask.WriteDigitalLines(1,1,10.0,daq.DAQmx_Val_GroupByChannel,digitalOutBits,None,None)
         dtask.StopTask()
     
-        self.myConfig['global']['activecoil'] = str(coil)
-        with open('config.ini','w') as cfg:
-            self.myConfig.write(cfg)
+        
             
     def updateText(self, coil):
         self.myMainWindow.TXT_BLCoil.setText(self.getBLCoil())
@@ -53,15 +56,16 @@ class CoilSelector(object):
             
     def getWeightCoil(self):
         if self.myConfig['global']['activecoil'] == 'coilA':
-            return 'B'
-        else:
             return 'A'
+        else:
+            return 'B'
             
     def getBLCoil(self):
         if self.myConfig['global']['activecoil'] == 'coilA':
-            return 'A'
-        else:
             return 'B'
+        else:
+            return 'A'
+
         
     
     

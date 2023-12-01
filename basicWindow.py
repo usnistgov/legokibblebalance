@@ -12,7 +12,8 @@ class BasicWindow:
         
         self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
         w_main.signalMainWindowClosed.connect(self.manualClose)
-        
+        w_main.RB_coilA.clicked.connect(self.useCoilA)
+        w_main.RB_coilB.clicked.connect(self.useCoilB)
         
     #To make sure windows dont show "offscreen"        
     def checkMoveWindow(self, xpos, ypos):
@@ -35,5 +36,13 @@ class BasicWindow:
             
         self.move(xpos,ypos)
         return
+    def useCoilA(self):
+        print('coil A')
+        return
+        
+    def useCoilB(self):
+        print('coil B')
+        return
+
 
 

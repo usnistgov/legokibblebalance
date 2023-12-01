@@ -196,3 +196,15 @@ class MeasureBL(QtWidgets.QMainWindow, gui_w_measureBL.Ui_MainWindow,basicWindow
     def closeEvent(self,event):
         self.manualClose()
         
+    def useCoilA(self):
+        print('coil A')
+        print(self.myCoilSelector.getBLCoil())
+        self.updateCoil()
+        
+    def useCoilB(self):
+        print('coil B')
+        print(self.myCoilSelector.getBLCoil())
+        self.updateCoil()
+        
+    def updateCoil(self):
+        self.TXT_BLcoil.setText('BL of coil: ' + self.myCoilSelector.getBLCoil())

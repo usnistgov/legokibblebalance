@@ -40,10 +40,12 @@ class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
         self.mySine = sine
         self.myCoilSelector = coilSelector
         self.myDeviceFinder = deviceFinder
+            
         
     #Coil & Mode Info----------------------------------------------------------
         self.RB_coilA.clicked.connect(self.myCoilSelector.useCoilA)
         self.RB_coilB.clicked.connect(self.myCoilSelector.useCoilB)
+        
         
         self.BTN_manualBalancecontrol.clicked.connect(self.controlBalanceManual_clicked)
     
@@ -76,6 +78,8 @@ class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
         self.BTN_ChooseDevice.clicked.connect(self.chooseDevice_clicked)
         self.BTN_PathAndVariables.clicked.connect(self.pathsAndVariables_clicked)
         self.BTN_CoilPolarities.clicked.connect(self.coilPolarity_clicked)
+        self.RB_coilA.setChecked(True)
+            
 
     # Basic Objects--------------------------------------------------------   
     def giveTimer(self):

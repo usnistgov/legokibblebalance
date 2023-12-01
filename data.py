@@ -1,6 +1,7 @@
 from __future__ import division
 import numpy as np
 import scipy.signal
+import time
 
 class DataArray(object):                                          #class creating a data object
     def __init__(self):                             #containing arrays for data and filtered data
@@ -91,6 +92,7 @@ class myfilter():                                           #creating an IIR fil
 class ProcessedData():
     def __init__(self, config):                                     #initialising data object for each input channel and t
         self.myConfig = config
+        self.lastcalltime = time.time()
     
         self.photoraw = DataArrayWithFilt()
         self.ai0D = DataArrayWithFilt()
@@ -145,6 +147,8 @@ class ProcessedData():
         
         
     def storeRawData(self, rawdata, NrOfCh, dt, L, cbdt):         #storing rawdata in data objects
+        self.thiscalltime = time.time()  
+        self.lastcalltime = self.thiscalltime
         self.Dlength = L
         
         self.ai0 = rawdata[0::NrOfCh]
@@ -178,13 +182,13 @@ class ProcessedData():
         aLast = self.posA.giveLastXDataElements(self.Dlength+1)
         posANews= np.array(aLast[1:])
         posAOlds= np.array(aLast[:-1])
-        velA = ((posANews-posAOlds)/dt)*0.001           #0.001 from mm/s to m/s
+        velA = ((posANews-posAOlds)/self.Dlength*dt)           #in mm/s
         self.veloA.addData(velA)
         
         bLast = self.posB.giveLastXDataElements(self.Dlength+1)
         posBNews= np.array(bLast[1:])
         posBOlds= np.array(bLast[:-1])
-        velB = ((posBNews-posBOlds)/dt)*0.001           #0.001 from mm/s to m/s
+        velB = ((posBNews-posBOlds)/self.Dlength*dt)           #in mm/s
         self.veloB.addData(velB)        
         
     def convertVoltToMM(self, data):                    #TODO RENAME POS & SSV
