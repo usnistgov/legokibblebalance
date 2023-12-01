@@ -136,7 +136,7 @@ class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
         except:
             xydata = [['t','photoraw','D']]
             name = ['Raw photo voltage','raw photo voltage']
-            self.window_rawphoto = w_plot.PlotWindow(self, xydata, name)
+            self.window_rawphoto = w_plot.PlotWindow(self, xydata, name,'t (s)','U (V)')
             self.TXT_rawphoto.setEnabled(True)
 
            
@@ -150,7 +150,7 @@ class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
         except:
             xydata = [['t','posA','D'],['t','posB','D']]
             name = ['Coil Positions','Coil A Position in mm','Coil B Position in mm']
-            self.window_coilPos = w_plot.PlotWindow(self, xydata, name)
+            self.window_coilPos = w_plot.PlotWindow(self, xydata, name,'t (s)','z (mm)')
             self.TXT_coilPosition.setEnabled(True)
 
 #       CALLBACK DT
@@ -173,7 +173,7 @@ class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
         except:
             xydata = [['t','veloA','D'],['t','veloB','D']]
             name = ['Coil Velocities','Coil A Velocity in mm/s','Coil B Velocity in mm/s']
-            self.window_coilVelocities = w_plot.PlotWindow(self, xydata, name)
+            self.window_coilVelocities = w_plot.PlotWindow(self, xydata, name,'t(s)','v(mm/s)')
             self.TXT_coilVelocities.setEnabled(True)
 
     def coilVoltages_clicked(self):
@@ -185,7 +185,7 @@ class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
         except:
             xydata = [['t','ai6','F'],['t','ai2','F']]
             name = ['Voltage across Coils','Coil B Voltage','Coil A Voltage']
-            self.window_coilVoltages = w_plot.PlotWindow(self, xydata, name)
+            self.window_coilVoltages = w_plot.PlotWindow(self, xydata, name,'t (s)','U (V)')
             self.TXT_coilVoltage.setEnabled(True)
 
     def current_clicked(self):
@@ -197,7 +197,7 @@ class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
         except:
             xydata = [['t','current','D']]
             name = ['Current','Current in mA']
-            self.window_current = w_plot.PlotWindow(self, xydata, name)
+            self.window_current = w_plot.PlotWindow(self, xydata, name,'t (s)','I (mA)')
             self.TXT_current.setEnabled(True)
 
     def showAllAI_clicked(self):      
@@ -209,7 +209,7 @@ class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
         except:
             xydata = [['t','ai0','D']]
             name = ['Raw Analog Input 0','Analog Input 0 in V']
-            self.window_ai0 = w_plot.PlotWindow(self, xydata, name)
+            self.window_ai0 = w_plot.PlotWindow(self, xydata, name,'t (s)','U (V)')
             
         try:
             if self.window_ai1.windowShown==True:
@@ -219,7 +219,7 @@ class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
         except:
             xydata = [['t','ai1','D']]
             name = ['Raw Analog Input 1','Analog Input 1 in V']
-            self.window_ai1 = w_plot.PlotWindow(self, xydata, name)
+            self.window_ai1 = w_plot.PlotWindow(self, xydata, name,'t (s)','U (V)')
             
         try:
             if self.window_ai2.windowShown==True:
@@ -229,7 +229,7 @@ class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
         except:
             xydata = [['t','ai2','D']]
             name = ['Raw Analog Input 2','Analog Input 2 in V']
-            self.window_ai2 = w_plot.PlotWindow(self, xydata, name)
+            self.window_ai2 = w_plot.PlotWindow(self, xydata, name,'t (s)','U (V)')
             
         try:
             if self.window_ai6.windowShown==True:
@@ -239,7 +239,7 @@ class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
         except:
             xydata = [['t','ai6','D']]
             name = ['Raw Analog Input 6','Analog Input 6 in V']
-            self.window_ai6 = w_plot.PlotWindow(self, xydata, name)
+            self.window_ai6 = w_plot.PlotWindow(self, xydata, name,'t (s)','U (V)')
             
             
 #    def showAllAIF_clicked(self):      

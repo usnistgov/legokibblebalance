@@ -3,7 +3,7 @@ import basicWindow
 from PyQt5 import QtWidgets 
 
 class PlotWindow(QtWidgets.QMainWindow,gui_w_plot.Ui_MainWindow,basicWindow.BasicWindow):
-    def __init__(self, w_main, xydata, name,):
+    def __init__(self, w_main, xydata, name,xlabel='t (s)',ylabel='U (V)'):
         super(PlotWindow,self).__init__()
         self.callco=0
         self.urate =2
@@ -31,6 +31,8 @@ class PlotWindow(QtWidgets.QMainWindow,gui_w_plot.Ui_MainWindow,basicWindow.Basi
         self.curve1 = self.myData.correctSize(self.x1,self.y1)
         self.plot1 = self.PW.plotItem.plot(*self.curve1,pen = 'b')
         self.PW.showGrid(x = True, y = True, alpha = 1)                                        
+        self.PW.setLabel(axis='bottom', text=xlabel)
+        self.PW.setLabel(axis='left', text=ylabel)
 
         #self.PW.set_grid(True)
         #self.PW.set_background_color("white")
