@@ -29,7 +29,9 @@ class PlotWindow(QtWidgets.QMainWindow,gui_w_plot.Ui_MainWindow,basicWindow.Basi
         self.x1 = self.getDataFromArray(self.xydata[0][0],'D')        #setting up graph1
         self.y1 = self.getDataFromArray(self.xydata[0][1],self.xydata[0][2])
         self.curve1 = self.myData.correctSize(self.x1,self.y1)
-        self.plot1 = self.PW.plotItem.plot(*self.curve1,pen = 'b')
+        self.plot1 = self.PW.plotItem.plot(*self.curve1, pen='b')#
+        #None, symbol='o',symbolPen='b')
+        #self.plot1.setSymbolSize(2)
         self.PW.showGrid(x = True, y = True, alpha = 1)                                        
         self.PW.setLabel(axis='bottom', text=xlabel)
         self.PW.setLabel(axis='left', text=ylabel)

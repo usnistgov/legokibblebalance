@@ -53,15 +53,19 @@ class MeasureBL(QtWidgets.QMainWindow, gui_w_measureBL.Ui_MainWindow,basicWindow
         try:
             self.PWperiods.clear()
             #self.PWperiods = self.PW_2periods.plotItem.plot(self.twoPeriodsVel,self.twoPeriodsInd)    
-            self.PWperiods = self.PW_2periods.plotItem.plot([0],[0], pen=None, symbol='o')
+            self.PWperiods = self.PW_2periods.plotItem.plot([0],[0],\
+                                        pen=None, symbol='o',size=1,symbolpen='b')
             self.PWperiodsFit = self.PW_2periods.plotItem.plot([0],[0],pen='r') 
             #self.PWperiods.setBackground('w') 
             #self.PWperiodsFit.setBackground('w') 
         except:
-            self.PWperiods = self.PW_2periods.plotItem.plot([0],[0],pen=None,symbol='o')
+            self.PWperiods = self.PW_2periods.plotItem.plot([0],[0],\
+                                        pen=None, symbol='o',size=1,symbolpen='b')
             self.PWperiodsfit = self.PW_2periods.plotItem.plot([0],[0],pen='r')  
             
         self.PW_2periods.setBackground('w')   
+        self.PWperiods.setSymbolSize(2)
+        
         self.PW_2periods.showGrid(x = True, y = True, alpha = 1)                                        
         self.PW_2periods.setLabel(axis='bottom', text='v (mm/s)')
         self.PW_2periods.setLabel(axis='left', text='U (V)')
@@ -159,7 +163,7 @@ class MeasureBL(QtWidgets.QMainWindow, gui_w_measureBL.Ui_MainWindow,basicWindow
         
 
         self.PWperiodsfit.setData(self.ve,fitV[0,:])
-        self.PWblofpos.setData(z,np.polyval(pars[-2::-1],z))
+        self.PWblofpos.setData(z,1000*np.polyval(pars[-2::-1],z))
         #self.PWblofpos.setData(z,fitV[0,:])
         
         currentBL0 = 1000*np.polyval(pars[-2::-1],[0])[-1]

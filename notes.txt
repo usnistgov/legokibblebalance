@@ -7,13 +7,15 @@
 
 BUGS:
 * When I close configure velomode it kicked it out of velo mode
+* middle window in measure_bl needs be multiplied by 1000
 
 
 
 Tatjana Wishlist:
+* print output goes to message window, currently about
 *Larger main window
 *Lock scale button for w_plots
-
+*delte sine wave in configure velocity mode
 
 10, 40,2
 20,400,3
