@@ -2,4 +2,4 @@
 *.bat
 setup.py
 gui_w_cfgShadowSensorNONBETA.ui
-congig.ini
+config.ini
