@@ -61,13 +61,24 @@ class MeasureBL(QtWidgets.QMainWindow, gui_w_measureBL.Ui_MainWindow,basicWindow
             self.PWperiods = self.PW_2periods.plotItem.plot([0],[0],pen='b')
             self.PWperiodsfit = self.PW_2periods.plotItem.plot([0],[0],pen='r')  
             
-        self.PW_2periods.setBackground('w')    
+        self.PW_2periods.setBackground('w')   
+        self.PW_2periods.showGrid(x = True, y = True, alpha = 1)                                        
+        self.PW_2periods.setLabel(axis='bottom', text='v (mm/s)')
+        self.PW_2periods.setLabel(axis='left', text='U (V)')
+
         self.PWblofpos = self.PW_BLofPos.plotItem.plot([0],[0])
         self.PW_BLofPos.setBackground('w') 
+        self.PW_BLofPos.showGrid(x = True, y = True, alpha = 1)                                        
+        self.PW_BLofPos.setLabel(axis='bottom', text='z (mm)')
+        self.PW_BLofPos.setLabel(axis='left', text='Bl (Tm)')
+        
         #self.PWblofpos2 = self.PW_BLofPos.plotItem.plot([0],[0],pen='r')
         
         self.Plot_BL0ofTime = self.PW_BL0ofTime.plotItem.plot([0],[0])
         self.PW_BL0ofTime.setBackground('w') 
+        self.PW_BL0ofTime.showGrid(x = True, y = True, alpha = 1)                                        
+        self.PW_BL0ofTime.setLabel(axis='bottom', text='Nr')
+        self.PW_BL0ofTime.setLabel(axis='left', text='Bl (Tm)')
                  
         self.myTimer.timeout.connect(self.updatePlot)
         self.startplotOn=True
