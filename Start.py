@@ -44,7 +44,7 @@ def go(window_main):
     coilSelector.coilInit()    
     
     window_main.show() 
-    
+    window_main.log('Program started')
     timer.start(100)
     task.StartTask()
 #    timer.timeout.connect(bla)

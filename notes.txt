@@ -9,6 +9,7 @@ BUGS:
 * When I close configure velomode it kicked it out of velo mode
 * middle window in measure_bl needs be multiplied by 1000
 * After calibration is done servo back to 0.
+* two many digits in bl saving
 
 
 Tatjana Wishlist:
@@ -16,6 +17,7 @@ Tatjana Wishlist:
 *Larger main window
 *Lock scale button for w_plots
 *delte sine wave in configure velocity mode
+* comments in ini file
 
 10, 40,2
 20,400,3

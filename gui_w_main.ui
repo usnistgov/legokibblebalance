@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>659</width>
+    <width>581</width>
     <height>465</height>
    </rect>
   </property>
@@ -441,8 +441,18 @@
     </widget>
     <widget class="QWidget" name="TAB_about">
      <attribute name="title">
-      <string>About</string>
+      <string>Messages</string>
      </attribute>
+     <widget class="QPlainTextEdit" name="Messages">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>621</width>
+        <height>171</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox">

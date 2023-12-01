@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(659, 465)
+        MainWindow.resize(581, 465)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -131,6 +131,9 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.TAB_settings, "")
         self.TAB_about = QtWidgets.QWidget()
         self.TAB_about.setObjectName("TAB_about")
+        self.Messages = QtWidgets.QPlainTextEdit(self.TAB_about)
+        self.Messages.setGeometry(QtCore.QRect(10, 10, 621, 171))
+        self.Messages.setObjectName("Messages")
         self.tabWidget.addTab(self.TAB_about, "")
         self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox.setGeometry(QtCore.QRect(10, 250, 221, 171))
@@ -398,7 +401,7 @@ class Ui_MainWindow(object):
         self.label_13.setText(_translate("MainWindow", "Get some more information to debugg your system"))
         self.label_14.setText(_translate("MainWindow", "Reset everything to default"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.TAB_settings), _translate("MainWindow", "Settings"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.TAB_about), _translate("MainWindow", "About"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.TAB_about), _translate("MainWindow", "Messages"))
         self.groupBox.setTitle(_translate("MainWindow", "Graphs:"))
         self.BTN_current.setText(_translate("MainWindow", "Current"))
         self.BTN_coilposition.setText(_translate("MainWindow", "Coil position"))

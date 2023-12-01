@@ -17,6 +17,7 @@ import w_pathsAndVariables
 import w_coilPolarity
 
 import factoryReset
+import datetime
 
 
 
@@ -240,53 +241,7 @@ class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
             xydata = [['t','ai6','D']]
             name = ['Raw Analog Input 6','Analog Input 6 in V']
             self.window_ai6 = w_plot.PlotWindow(self, xydata, name,'t (s)','U (V)')
-            
-            
-#    def showAllAIF_clicked(self):      
-#            
-#        try:
-#            if self.window_ai0f.windowShown==True:
-#                self.window_ai0f.manualClose()
-#            else:
-#                raise Exception('Show that window')
-#        except:
-#            xydata = [['t','ai0','F']]
-#            name = ['Raw Analog Input 0F','Analog Input 0 in V']
-#            self.window_ai0f = w_plot.PlotWindow(self, xydata, name)
-#            
-#        try:
-#            if self.window_ai1f.windowShown==True:
-#                self.window_ai1f.manualClose()
-#            else:
-#                raise Exception('Show that window')
-#        except:
-#            xydata = [['t','ai1','F']]
-#            name = ['Raw Analog Input 1F','Analog Input 1 in V']
-#            self.window_ai1f = w_plot.PlotWindow(self, xydata, name)
-#            
-#        try:
-#            if self.window_ai2f.windowShown==True:
-#                self.window_ai2f.manualClose()
-#            else:
-#                raise Exception('Show that window')
-#        except:
-#            xydata = [['t','ai2','F']]
-#            name = ['Raw Analog Input 2F','Analog Input 2 in V']
-#            self.window_ai2f = w_plot.PlotWindow(self, name)
-#            
-#        try:
-#            if self.window_ai6f.windowShown==True:
-#                self.window_ai6f.manualClose()
-#            else:
-#                raise Exception('Show that window')
-#        except:
-#            xydata = [['t','ai6','F']]
-#            name = ['Raw Analog Input 6F','Analog Input 6 in V']
-#            self.window_ai6f = w_plot.PlotWindow(self, xydata, name)
-
-    
-    #Calibrations    
-    
+  
     def cfgPID_clicked(self):      
         try:
             if self.Window_cfgPID.windowShown==True:
@@ -386,7 +341,11 @@ class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
         except:
             self.window_coilPolarity = w_coilPolarity.CoilPolarity(self)
         
-
+    def log(self,msg):
+        now = datetime.datetime.now()
+        outstr = now.strftime('%H:%M')+' '+msg+'\n'
+        self.Messages.appendPlainText(outstr)
+        
 
     #Close Method--------------------------------------------------------------
 

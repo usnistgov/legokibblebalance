@@ -46,7 +46,7 @@ class PlotWindow(QtWidgets.QMainWindow,gui_w_plot.Ui_MainWindow,basicWindow.Basi
             self.y2 = self.getDataFromArray(self.xydata[1][1],self.xydata[1][2])
             self.curve2 = self.myData.correctSize(self.x2,self.y2)
             self.plot2 = self.PW.plotItem.plot(*self.curve2,pen = 'r')
-            self.plot1.setPen(pg.mkPen(color='r', width=2))#
+            self.plot2.setPen(pg.mkPen(color='r', width=2))#
 
         
         self.show()
