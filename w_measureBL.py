@@ -13,7 +13,8 @@ class MeasureBL(QtWidgets.QMainWindow, gui_w_measureBL.Ui_MainWindow,basicWindow
         
         self.w_main_pos = w_main.pos()
         #Inherited from Basic Window
-        self.checkMoveWindow(self.w_main_pos.x()+(w_main.width()/2),self.w_main_pos.y()-self.height()-26+(self.height()/2))
+        self.checkMoveWindow(self.w_main_pos.x()+(w_main.width()//2),
+                             self.w_main_pos.y()-self.height()-26+(self.height()//2))
 
         self.myTask.switchToVelo()
 
