@@ -39,7 +39,7 @@ class CallbackTask(daq.Task, QtCore.QObject):
         self.periodCo = 0
         self.doPID = True                   #Determines if Feedback is on
         self.mode = 'static'                #Determines the PID mode
-#        self.oldmode = 'static'                #Determines the PID mode        
+        self.oldmode = 'static'                #Determines the PID mode        
 #        self.controlViaTarget = True
         self.PID_fine = []                  #List for fine PID values
         self.PID_coarse = []                #List for coarse PID values
@@ -126,6 +126,8 @@ class CallbackTask(daq.Task, QtCore.QObject):
                 self.setVoltage(self.output*self.sign)    
                 
             elif self.mode == 'velo':
+                if self.oldmode!=self.mode:
+                    self.veloPID.resetIntegrator()
                 self.velo_f = self.mySine.getF()
                 n = 2
                 self.veloPIDwidth = n*(self.samprate/self.velo_f) #samplesperperiod
@@ -135,46 +137,26 @@ class CallbackTask(daq.Task, QtCore.QObject):
                 
 #                if self.controlViaTarget == True:
                 #CLOSED LOOP VERSION
-                self.sinepos = self.myData.convertMMToVolt(self.mySine.giveCurrentY())
-                self.veloPID.setTarget(self.sinepos)
-                self.output = self.veloPID.doPIDCalc(currentShadowVoltage, target_der = self.mySine.giveDerivative(),filtfac = 0.0)
+                #self.sinepos = self.myData.convertMMToVolt(self.mySine.giveCurrentY())
+                self.sinepos = self.myData.simpleMMtoVolt(self.mySine.giveCurrentY())
+                #self.staticPID.setTarget(self.sinepos)
+                self.veloPID.setTarget(0)
+                #self.output = self.staticPID.doPIDCalc(currentShadowVoltage)
+                self.output = self.veloPID.doPIDCalc(currentShadowVoltage,mode='velo')+\
+                    self.mySine.giveCurrentY()
+                                                     #target_der = self.mySine.giveDerivative(),\
+                                                         #filtfac = 0.0)
                 #sign = int(self.myConfig[self.myCoilSelector.getWeightCoil]['polarity'])
-                if self.co==0:
-                    self.sign = int(self.myConfig['coil'+self.myCoilSelector.getWeightCoil()]['polarity'])
-
+                #if self.co==0:
+                self.sign = int(self.myConfig['coil'+self.myCoilSelector.getWeightCoil()]['polarity'])
                 self.setVoltage(self.output*self.sign)
                 
                 if self.periodCo == self.veloPIDwidth:
                     self.periodCo = 0
                     self.signalFitBL.emit()
-#                else:                    
-#                    #OPEN LOOP VERSION
-#                    if self.oldmode == 'static':
-#                        self.offset = self.staticPID.getSu()
-#                        self.veloPID.su = self.staticPID.su
-#                        
-#                    if self.periodCo == self.veloPIDwidth:
-#                        self.periodCo = 0
-#                        meanveloShadowVoltage = np.mean(shadowVoltage.giveLastXDataFElements(self.veloPIDwidth))
-#                        print meanveloShadowVoltage,self.veloPID.target
-#                        self.veloPID.doPIDCalc(meanveloShadowVoltage)
-#                        newoffset = self.veloPID.su # we only need the I term
-#                        if abs(newoffset-self.offset)>0.01 or self.offset == 10 or self.offset == -10 :
-#                            self.offset =  newoffset 
-#                            print "newoffset: ",newoffset
-#                            self.periodCo = self.periodCo - self.veloPIDwidth
-#                        else: 
-#                            self.signalFitBL.emit()
-#                    self.output = self.offset + self.mySine.giveCurrentY()
-#                    if self.output > 10.0:
-#                        self.output = 10.0
-#                    if self.output < -10.0:
-#                        self.output = -10.0
-#                        
-#                    self.setVoltage(self.output)
             else:
                 print('ERROR: selected PID mode is Invalid')
-#            self.oldmode = self.mode
+            self.oldmode = self.mode
                 
         self.signalNewCallback.emit()
            

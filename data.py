@@ -182,13 +182,14 @@ class ProcessedData():
         aLast = self.posA.giveLastXDataElements(self.Dlength+1)
         posANews= np.array(aLast[1:])
         posAOlds= np.array(aLast[:-1])
-        velA = ((posANews-posAOlds)/self.Dlength*dt)           #in mm/s
+        velA = (posANews-posAOlds)/(self.Dlength*dt)          #in mm/s
         self.veloA.addData(velA)
+        #print('posANews={0:9.6f} denom={1:8.6f} '.format(posANews))
         
         bLast = self.posB.giveLastXDataElements(self.Dlength+1)
         posBNews= np.array(bLast[1:])
         posBOlds= np.array(bLast[:-1])
-        velB = ((posBNews-posBOlds)/self.Dlength*dt)           #in mm/s
+        velB = (posBNews-posBOlds)/(self.Dlength*dt)           #in mm/s
         self.veloB.addData(velB)        
         
     def convertVoltToMM(self, data):                    #TODO RENAME POS & SSV
@@ -200,6 +201,9 @@ class ProcessedData():
         ssvfit = [ float(i) for i in (self.myConfig['global']['ssvfit']).split(',')]
         ssv = np.polyval(ssvfit,data)
         return ssv
+    
+    def simpleMMtoVolt(self,data):
+        return float(self.myConfig['global']['balance0photooffset'])+data
   
     def giveDataArray(self, name):                         #give a specific data object
         if name == 't':

@@ -162,7 +162,7 @@
     <widget class="QPushButton" name="BTN_save">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>0</x>
        <y>70</y>
        <width>75</width>
        <height>23</height>
@@ -175,7 +175,7 @@
     <widget class="QPushButton" name="BTN_load">
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>90</x>
        <y>70</y>
        <width>75</width>
        <height>23</height>
@@ -261,6 +261,19 @@
      </property>
      <property name="text">
       <string>Output:</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="BTN_resetI">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>70</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Reset I</string>
      </property>
     </widget>
    </widget>

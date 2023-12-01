@@ -172,7 +172,7 @@ class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
                 raise Exception('Show that window')
         except:
             xydata = [['t','veloA','D'],['t','veloB','D']]
-            name = ['Coil Velocities','Coil A Velocity in m/s','Coil B Velocity in m/s']
+            name = ['Coil Velocities','Coil A Velocity in mm/s','Coil B Velocity in mm/s']
             self.window_coilVelocities = w_plot.PlotWindow(self, xydata, name)
             self.TXT_coilVelocities.setEnabled(True)
 

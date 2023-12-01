@@ -32,6 +32,7 @@ class VeloMode(QtWidgets.QMainWindow,gui_w_cfgVelomode.Ui_MainWindow,basicWindow
         
         self.BTN_save.clicked.connect(self.save)   
         self.BTN_load.clicked.connect(self.load)
+        self.BTN_resetI.clicked.connect(self.myVeloPID.resetIntegrator)
         
         self.myTimer.timeout.connect(self.updateWindow)
                 
@@ -41,7 +42,7 @@ class VeloMode(QtWidgets.QMainWindow,gui_w_cfgVelomode.Ui_MainWindow,basicWindow
     def updateWindow(self): 
         sineData = self.mySine.giveSineData()
         x =sineData[0]
-        y =sineData[1]
+        y =self.myData.simpleMMtoVolt(sineData[1])
         self.sinePlot.setData(x,y)
         
         self.LCD_su.display(self.myVeloPID.getSu())

@@ -65,8 +65,24 @@ class CoilSelector(object):
             return 'B'
         else:
             return 'A'
-
+    
+    def getVelo(self):
+        if self.myConfig['global']['activecoil'] == 'coilA':
+            return 'veloB'
+        else:
+            return 'veloA'
+       
+    def getVolt(self):
+        if self.myConfig['global']['activecoil'] == 'coilA':
+            return 'ai6'
+        else:
+            return 'ai2'
         
+    def getPos(self):
+        if self.myConfig['global']['activecoil'] == 'coilA':
+            return 'posA'
+        else:
+            return 'posB'
     
     
     

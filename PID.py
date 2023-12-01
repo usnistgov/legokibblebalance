@@ -19,6 +19,7 @@ class PID():
         self.pid_fine_co=0                          #counter for how long PID fine area has been reached
         self.PIDmode = 'coarse'
         self.eps = 0.0                                #initialising PID variables
+        self.reps =0.0  # running eps for velo fb
         self.su = 0.0
         self.pid_yom = 0.0
         self.deriv = 0.0
@@ -28,7 +29,7 @@ class PID():
                                                     #IF FAlSE INPUT PID SHOULD BE THE SAME FOR PIDfine/coarse
         self.otime = datetime.datetime.now()
         
-    def doPIDCalc(self,y,target_der=0,filtfac=0.8,use_measured_dt=True):
+    def doPIDCalc(self,y,target_der=0,filtfac=0.8,use_measured_dt=True,mode='force'):
         self.now = datetime.datetime.now()
         self.measured_dt = (self.now-self.otime).total_seconds()
         self.otime = self.now
@@ -64,7 +65,12 @@ class PID():
         if self.pid_dt==0:
             self.pid_dt = 1e-3
 
-        self.su = self.su + I*self.eps*self.pid_dt
+        if mode=='velo':
+            f =1
+            self.reps = self.reps*(1-f)+f*self.eps
+            self.su = self.su + I*self.reps*self.pid_dt
+        else:
+            self.su = self.su + I*self.eps*self.pid_dt
 
         
         if self.su> self.Ilimit:

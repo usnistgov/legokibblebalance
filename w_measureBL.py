@@ -41,8 +41,8 @@ class MeasureBL(QtWidgets.QMainWindow, gui_w_measureBL.Ui_MainWindow,basicWindow
         self.bl0_t.setMaxlen(600)
                 
         
-        self.velodata = self.myData.giveDataArray('veloB')
-        self.induceddata = self.myData.giveDataArray('ai6')
+        self.velodata = self.myData.giveDataArray(self.myCoilSelector.getVelo())
+        self.induceddata = self.myData.giveDataArray(self.myCoilSelector.getVolt())
         
         #self.velodata,self.induceddata = self.myData.correctSize(self.velodata,self.induceddata)
     
@@ -73,8 +73,8 @@ class MeasureBL(QtWidgets.QMainWindow, gui_w_measureBL.Ui_MainWindow,basicWindow
         
     def updatePlot(self):
         self.f = self.mySine.getF()
-        self.velodat = self.myData.giveDataArray('veloB')
-        self.induceddat = self.myData.giveDataArray('ai6')
+        self.velodat = self.myData.giveDataArray(self.myCoilSelector.getVelo())
+        self.induceddat = self.myData.giveDataArray(self.myCoilSelector.getVolt())
                
         self.twoPeriodsVe = self.velodat.giveNDataPeriods(2,self.dt, self.f)
         self.twoPeriodsIn = self.induceddat.giveNDataFPeriods(2,self.dt,self.f)
@@ -89,15 +89,15 @@ class MeasureBL(QtWidgets.QMainWindow, gui_w_measureBL.Ui_MainWindow,basicWindow
         self.f = self.mySine.getF()
 #        self.velodata = self.myData.giveDataArray('veloB')
 #        self.induceddata = self.myData.giveDataArray('ai6')
-        self.veC = self.myData.giveDataArray('veloB')
-        self.VoC = self.myData.giveDataArray('ai6')
+        self.veC = self.myData.giveDataArray(self.myCoilSelector.getVelo())
+        self.VoC = self.myData.giveDataArray(self.myCoilSelector.getVolt())
                
 #        self.twoPeriodsVel = self.velodata.giveNDataPeriods(2,self.dt, self.f)
 #        self.twoPeriodsInd = self.induceddata.giveNDataFPeriods(2,self.dt,self.f)
-        self.ve = self.veC.giveNDataPeriods(2,self.dt,self.f)        
+        self.ve = self.veC.giveNDataPeriods(2,self.dt,self.f)       
         self.Vo = self.VoC.giveNDataFPeriods(2,self.dt,self.f)
 
-        zC = self.myData.giveDataArray('posB')
+        zC = self.myData.giveDataArray(self.myCoilSelector.getPos())
 
         z = zC.giveNDataPeriods(2,self.dt,self.f)
 
@@ -150,7 +150,7 @@ class MeasureBL(QtWidgets.QMainWindow, gui_w_measureBL.Ui_MainWindow,basicWindow
         self.PWblofpos.setData(z,np.polyval(pars[-2::-1],z))
         #self.PWblofpos.setData(z,fitV[0,:])
         
-        currentBL0 = np.polyval(pars[-2::-1],[0])[-1]
+        currentBL0 = 1000*np.polyval(pars[-2::-1],[0])[-1]
         
         self.bl0_t.addData(len(self.bl0.giveAllData())-1)
         self.bl0.addData(currentBL0)
@@ -182,7 +182,11 @@ class MeasureBL(QtWidgets.QMainWindow, gui_w_measureBL.Ui_MainWindow,basicWindow
         
     def saveBL0(self):
         activeCoil = self.myConfig['global']['activecoil']
-        self.myConfig[activeCoil]['bl0'] = str(self.bl0mean)
+        if activeCoil=='coilA':
+            measCoil='coilB'
+        else:
+            measCoil='coilA'
+        self.myConfig[measCoil]['bl0'] = str(self.bl0mean)
         with open('config.ini','w') as configfile:
             self.myConfig.write(configfile)
         
