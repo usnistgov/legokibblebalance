@@ -8,7 +8,7 @@
 BUGS:
 * When I close configure velomode it kicked it out of velo mode
 * middle window in measure_bl needs be multiplied by 1000
-
+* After calibration is done servo back to 0.
 
 
 Tatjana Wishlist:

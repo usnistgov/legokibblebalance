@@ -3,6 +3,7 @@ import numpy as np
 import gui_w_measureBL
 import basicWindow
 from PyQt5 import QtWidgets
+import pyqtgraph as pg
 
 class MeasureBL(QtWidgets.QMainWindow, gui_w_measureBL.Ui_MainWindow,basicWindow.BasicWindow):
     def __init__(self, w_main):
@@ -164,6 +165,7 @@ class MeasureBL(QtWidgets.QMainWindow, gui_w_measureBL.Ui_MainWindow,basicWindow
 
         self.PWperiodsfit.setData(self.ve,fitV[0,:])
         self.PWblofpos.setData(z,1000*np.polyval(pars[-2::-1],z))
+        self.PWblofpos.setPen(pg.mkPen(color='r', width=2))
         #self.PWblofpos.setData(z,fitV[0,:])
         
         currentBL0 = 1000*np.polyval(pars[-2::-1],[0])[-1]

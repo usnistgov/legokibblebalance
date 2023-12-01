@@ -1,6 +1,7 @@
 import gui_w_plot
 import basicWindow
 from PyQt5 import QtWidgets 
+import pyqtgraph as pg
 
 class PlotWindow(QtWidgets.QMainWindow,gui_w_plot.Ui_MainWindow,basicWindow.BasicWindow):
     def __init__(self, w_main, xydata, name,xlabel='t (s)',ylabel='U (V)'):
@@ -29,7 +30,8 @@ class PlotWindow(QtWidgets.QMainWindow,gui_w_plot.Ui_MainWindow,basicWindow.Basi
         self.x1 = self.getDataFromArray(self.xydata[0][0],'D')        #setting up graph1
         self.y1 = self.getDataFromArray(self.xydata[0][1],self.xydata[0][2])
         self.curve1 = self.myData.correctSize(self.x1,self.y1)
-        self.plot1 = self.PW.plotItem.plot(*self.curve1, pen='b')#
+        self.plot1 = self.PW.plotItem.plot(*self.curve1, pen='b')
+        self.plot1.setPen(pg.mkPen(color='b', width=2))#
         #None, symbol='o',symbolPen='b')
         #self.plot1.setSymbolSize(2)
         self.PW.showGrid(x = True, y = True, alpha = 1)                                        
@@ -44,6 +46,8 @@ class PlotWindow(QtWidgets.QMainWindow,gui_w_plot.Ui_MainWindow,basicWindow.Basi
             self.y2 = self.getDataFromArray(self.xydata[1][1],self.xydata[1][2])
             self.curve2 = self.myData.correctSize(self.x2,self.y2)
             self.plot2 = self.PW.plotItem.plot(*self.curve2,pen = 'r')
+            self.plot1.setPen(pg.mkPen(color='r', width=2))#
+
         
         self.show()
         self.windowShown=True   
