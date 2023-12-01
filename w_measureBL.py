@@ -58,7 +58,7 @@ class MeasureBL(QtWidgets.QMainWindow, gui_w_measureBL.Ui_MainWindow,basicWindow
             #self.PWperiods.setBackground('w') 
             #self.PWperiodsFit.setBackground('w') 
         except:
-            self.PWperiods = self.PW_2periods.plotItem.plot([0],[0],pen='b')
+            self.PWperiods = self.PW_2periods.plotItem.plot([0],[0],pen=None,symbol='o')
             self.PWperiodsfit = self.PW_2periods.plotItem.plot([0],[0],pen='r')  
             
         self.PW_2periods.setBackground('w')   
