@@ -53,7 +53,7 @@ class MeasureBL(QtWidgets.QMainWindow, gui_w_measureBL.Ui_MainWindow,basicWindow
         try:
             self.PWperiods.clear()
             #self.PWperiods = self.PW_2periods.plotItem.plot(self.twoPeriodsVel,self.twoPeriodsInd)    
-            self.PWperiods = self.PW_2periods.plotItem.plot([0],[0],pen='b')
+            self.PWperiods = self.PW_2periods.plotItem.plot([0],[0], pen=None, symbol='o')
             self.PWperiodsFit = self.PW_2periods.plotItem.plot([0],[0],pen='r') 
             #self.PWperiods.setBackground('w') 
             #self.PWperiodsFit.setBackground('w') 
@@ -74,7 +74,7 @@ class MeasureBL(QtWidgets.QMainWindow, gui_w_measureBL.Ui_MainWindow,basicWindow
         
         #self.PWblofpos2 = self.PW_BLofPos.plotItem.plot([0],[0],pen='r')
         
-        self.Plot_BL0ofTime = self.PW_BL0ofTime.plotItem.plot([0],[0])
+        self.Plot_BL0ofTime = self.PW_BL0ofTime.plotItem.plot([0],[0],pen=None, symbol='o')
         self.PW_BL0ofTime.setBackground('w') 
         self.PW_BL0ofTime.showGrid(x = True, y = True, alpha = 1)                                        
         self.PW_BL0ofTime.setLabel(axis='bottom', text='Nr')
