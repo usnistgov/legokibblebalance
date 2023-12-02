@@ -17,7 +17,6 @@ class CallbackTask(daq.Task, QtCore.QObject):
         self.myConfig = config              #Save given config object
         self.myCoilSelector = coilSelector
         self.mySine = sine        
-        print('callback here: Dev- ', self.myConfig['global']['device'])
         self.myDevice = self.myConfig['global']['device']
         #INITIALISE VARIABLES
         self.samprate = float(self.myConfig['dataacq']['samprate'])                 #Samples per sec and channel
@@ -118,11 +117,6 @@ class CallbackTask(daq.Task, QtCore.QObject):
                 #sign = int(self.myConfig[self.myCoilSelector.getWeightCoil]['polarity'])
                 if self.co==0:
                     self.sign = int(self.myConfig['coil'+self.myCoilSelector.getWeightCoil()]['polarity'])
-#                if self.co==0:
- #                   print(currentShadowVoltage,
-  #                        self.photooffset,
-   #                       self.staticPID.target,
-    #                      self.sign,self.myCoilSelector.getWeightCoil())
                 self.setVoltage(self.output*self.sign)    
                 
             elif self.mode == 'velo':
@@ -200,13 +194,6 @@ class CallbackTask(daq.Task, QtCore.QObject):
         
     def getDt(self):                        #Returns Dt
         return self.dt
-        
-#    def getOffset(self):                    #Returns Offset
-#        print 'goffs'
-#        return self.offset
-        
+                
     def getSamprate(self):
         return self.samprate
-#        
-#    def getControlViaTarget(self):
-#        return self.controlViaTarget
