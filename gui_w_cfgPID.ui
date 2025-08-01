@@ -484,7 +484,7 @@
      <string>Reset Integrator</string>
     </property>
    </widget>
-   <widget class="QLCDNumber" name="LCD_AO1_2">
+   <widget class="QLCDNumber" name="LCD_pos">
     <property name="geometry">
      <rect>
       <x>110</x>
