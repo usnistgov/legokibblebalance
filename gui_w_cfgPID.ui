@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>536</width>
-    <height>162</height>
+    <width>543</width>
+    <height>203</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>130</y>
+      <y>160</y>
       <width>81</width>
       <height>16</height>
      </rect>
@@ -207,7 +207,7 @@
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>80</y>
+      <y>120</y>
       <width>171</width>
       <height>31</height>
      </rect>
@@ -322,7 +322,7 @@
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>120</y>
+      <y>160</y>
       <width>171</width>
       <height>31</height>
      </rect>
@@ -436,7 +436,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>90</y>
+      <y>120</y>
       <width>81</width>
       <height>16</height>
      </rect>
@@ -449,7 +449,7 @@
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>40</y>
+      <y>80</y>
       <width>171</width>
       <height>31</height>
      </rect>
@@ -462,13 +462,13 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>50</y>
+      <y>90</y>
       <width>81</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Analog Output</string>
+     <string>Analog Output:</string>
     </property>
    </widget>
    <widget class="QPushButton" name="BTN_resetIntegrator">
@@ -482,6 +482,32 @@
     </property>
     <property name="text">
      <string>Reset Integrator</string>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="LCD_AO1_2">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>40</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="digitCount">
+     <number>10</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pos:</string>
     </property>
    </widget>
   </widget>
