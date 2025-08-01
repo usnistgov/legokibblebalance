@@ -60,6 +60,7 @@ class CalibratePID(QtWidgets.QMainWindow,gui_w_cfgPID.Ui_MainWindow,basicWindow.
         
     def updateDisplay(self):                    #updating labels and lcds
         self.TXT_PID_mode.setText(self.myStaticPID.getPIDmode())
+        self.LCD_pos.display(self.fbSSV)
         self.LCD_su.display(self.myStaticPID.getSu())
         self.LCD_eps.display(self.myData.convertVoltToMM(self.myStaticPID.getEps()))
         self.LCD_AO1.display(self.myStaticPID.getOutput())

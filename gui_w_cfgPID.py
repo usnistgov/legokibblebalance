@@ -137,6 +137,12 @@ class Ui_MainWindow(object):
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
         self.label_7.setGeometry(QtCore.QRect(20, 90, 81, 16))
         self.label_7.setObjectName("label_7")
+
+        self.LCD_pos = QtWidgets.QLCDNumber(self.centralwidget)
+        self.LCD_pos.setGeometry(QtCore.QRect(110, 40, 171, 31))
+        self.LCD_pos.setDigitCount(3)
+        self.LCD_AO1.setObjectName("LCD_pos")
+        
         self.LCD_AO1 = QtWidgets.QLCDNumber(self.centralwidget)
         self.LCD_AO1.setGeometry(QtCore.QRect(110, 40, 171, 31))
         self.LCD_AO1.setDigitCount(10)
