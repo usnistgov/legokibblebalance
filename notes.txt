@@ -2,7 +2,7 @@
 * Anti windup fir integrator
 * reset integrator button in cfg velo mode
 * units on the graphs
-
+* In calibrate positon give fewer decimals for the coefficients.
 
 
 BUGS:
