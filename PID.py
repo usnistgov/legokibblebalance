@@ -33,7 +33,7 @@ class PID():
         self.now = datetime.datetime.now()
         self.measured_dt = (self.now-self.otime).total_seconds()
         self.otime = self.now
-        
+        self.y =y
         self.eps = y - self.target
         
         if self.useCoarseFine:
