@@ -80,6 +80,9 @@ You might need administrator privileges
 
 
 ### Sometime
+* Remove Offsets in graph
+* Two more digits in weighing mode
+* Target does not show in configure PID
 * Ui: deactivate UI Elements when functions are not needed.
 * Check that opening cfgPID does not interfere with current Target
 * cfg Pos %stable and variables to change eps for being in range, % progress %eps
