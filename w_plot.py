@@ -37,7 +37,7 @@ class PlotWindow(QtWidgets.QMainWindow,gui_w_plot.Ui_MainWindow,basicWindow.Basi
         self.PW.showGrid(x = True, y = True, alpha = 1)                                        
         self.PW.setLabel(axis='bottom', text=xlabel)
         self.PW.setLabel(axis='left', text=ylabel)
-        self.PW.getAxis('left').enableAutoOffset(False)
+        self.PW.plot1.getAxis('left').enableAutoOffset(False)
 
         #self.PW.set_grid(True)
         #self.PW.set_background_color("white")
