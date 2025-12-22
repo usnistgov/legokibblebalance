@@ -16,20 +16,20 @@ class CalibratePID(QtWidgets.QMainWindow,gui_w_cfgPID.Ui_MainWindow,basicWindow.
         self.myStaticPID = self.myTask.giveStaticPID()
         
         #setting up the ui
-        self.minPos = float(self.myConfig['global']['mymin'])
-        self.maxPos = float(self.myConfig['global']['mymax'])
-        mivopos = self.myData.convertVoltToMM(self.minPos)
-        mavopos = self.myData.convertVoltToMM(self.maxPos)
-        if mavopos > mivopos :
-            self.TB_target.setMinimum(mivopos)
-            self.TB_target.setMaximum(mavopos)
-        else:
-            self.TB_target.setMinimum(mavopos)
-            self.TB_target.setMaximum(mivopos)
+        #self.minPos = float(self.myConfig['global']['mymin'])
+        #self.maxPos = float(self.myConfig['global']['mymax'])
+        #mivopos = self.myData.convertVoltToMM(self.minPos)
+        #mavopos = self.myData.convertVoltToMM(self.maxPos)
+  #      if mavopos > mivopos :
+  #          self.TB_target.setMinimum(mivopos)
+  #          self.TB_target.setMaximum(mavopos)
+    #    else:
+  #          self.TB_target.setMinimum(mavopos)
+   #         self.TB_target.setMaximum(mivopos)
         
         
-        self.TB_target.setMinimum(-1000)
-        self.TB_target.setMaximum(1000)
+        self.TB_target.setMinimum(-10)
+        self.TB_target.setMaximum(10)
 
         
         self.loadPID()
@@ -44,7 +44,9 @@ class CalibratePID(QtWidgets.QMainWindow,gui_w_cfgPID.Ui_MainWindow,basicWindow.
         self.TB_P_coarse.valueChanged.connect(self.setPIDs)
         self.TB_I_coarse.valueChanged.connect(self.setPIDs)
         self.TB_D_coarse.valueChanged.connect(self.setPIDs)
-        self.TB_target.valueChanged.connect(lambda: self.myStaticPID.setTarget(self.myData.convertMMToVolt(self.TB_target.value())))
+        #self.TB_target.valueChanged.connect(lambda: self.myStaticPID.setTarget(self.myData.convertMMToVolt(self.TB_target.value())))
+        self.TB_target.valueChanged.connect(lambda: self.myStaticPID.setTarget(self.TB_target.value()))
+
         self.TB_eps_switch.valueChanged.connect(self.setPIDs)    
         
         

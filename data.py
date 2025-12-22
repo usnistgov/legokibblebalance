@@ -238,11 +238,10 @@ class ProcessedData():
             returnarray = self.cbdt
         elif name == 'photoraw':
             returnarray = self.photoraw
-            
-
+        elif name=='photowoff':
+            returnarray = self.ai0D
         else:
-            print('ERROR: Choose From t,ai0,ai1,ai2,ai6,posA,PosB,veloA,veloB,sine,bl0,bl0_t,cbdt and NOT:', name)  
-        
+            print('ERROR: Choose From t,ai0,ai1,ai2,ai6,posA,PosB,veloA,veloB,sine,bl0,bl0_t,cbdt and NOT:', name)     
         return returnarray        
 
     def correctSize(self, x, y):                                 #making sure that two data arrays are the same length
