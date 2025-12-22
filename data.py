@@ -45,7 +45,11 @@ class DataArrayWithFilt(DataArray):
         super(DataArrayWithFilt,self).__init__()
         self.dataF = np.zeros(1)
                 
-        b,a = scipy.signal.butter(2,[0.005])                 #creating filter koefficients for butterworth filter
+        try:
+            b,a = scipy.signal.butter(2,[0.005])                 #creating filter koefficients for butterworth filter
+        except:
+            b,a = scipy.signal.butter(2,0.005)                 #creating filter koefficients for butterworth filter
+
         self.filter = myfilter(b,a)                         #creating IIR filter 
         
     def addData(self, newdata):
