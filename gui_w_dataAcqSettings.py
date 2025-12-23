@@ -1,119 +1,127 @@
-# -*- coding: utf-8 -*-
+import sys
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QLabel, 
+                             QSpinBox, QLCDNumber, QPushButton, 
+                             QVBoxLayout, QGridLayout, QFrame)
+from PyQt5.QtCore import Qt
 
-# Form implementation generated from reading ui file 'gui_w_dataAcqSettings.ui'
-#
-# Created: Thu Mar 02 18:00:55 2017
-#      by: PyQt4 UI code generator 4.11.3
-#
-# WARNING! All changes made in this file will be lost!
+class Ui_MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Data acquisition settings")
+        # Set a reasonable default size
+        self.resize(550, 300)
+        self.initUI()
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+    def initUI(self):
+        self.centralwidget = QWidget()
+        self.setCentralWidget(self.centralwidget)
 
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    def _fromUtf8(s):
-        return s
+        # Main Layout: Vertical
+        self.main_layout = QVBoxLayout(self.centralwidget)
 
-try:
-    _encoding = QtWidgets.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtWidgets.QApplication.translate(context, text, disambig)
+        # --- Top: Warning Label ---
+        self.label_8 = QLabel("CHANGING THESE VALUES REQUIRES A PROGRAM RESTART!!!")
+        self.label_8.setAlignment(Qt.AlignCenter)
+        self.label_8.setStyleSheet("color: #aa0000; font-weight: bold; "
+                                   "text-decoration: underline; font-size: 10pt;")
+        self.label_8.setObjectName("label_8")
+        
+        self.main_layout.addWidget(self.label_8)
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(483, 249)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.TB_samprate = QtWidgets.QSpinBox(self.centralwidget)
-        self.TB_samprate.setGeometry(QtCore.QRect(140, 50, 101, 31))
-        self.TB_samprate.setMaximum(999999999)
-        self.TB_samprate.setObjectName(_fromUtf8("TB_samprate"))
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(10, 50, 121, 31))
-        self.label.setObjectName(_fromUtf8("label"))
-        self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(10, 90, 121, 31))
-        self.label_2.setObjectName(_fromUtf8("label_2"))
-        self.TB_length = QtWidgets.QSpinBox(self.centralwidget)
-        self.TB_length.setGeometry(QtCore.QRect(140, 90, 101, 31))
-        self.TB_length.setMaximum(999999999)
-        self.TB_length.setObjectName(_fromUtf8("TB_length"))
-        self.LCD_totalSamprate = QtWidgets.QLCDNumber(self.centralwidget)
-        self.LCD_totalSamprate.setGeometry(QtCore.QRect(390, 50, 81, 31))
-        self.LCD_totalSamprate.setObjectName(_fromUtf8("LCD_totalSamprate"))
-        self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setGeometry(QtCore.QRect(260, 50, 121, 31))
-        self.label_3.setObjectName(_fromUtf8("label_3"))
-        self.label_4 = QtWidgets.QLabel(self.centralwidget)
-        self.label_4.setGeometry(QtCore.QRect(260, 90, 121, 31))
-        self.label_4.setObjectName(_fromUtf8("label_4"))
-        self.label_5 = QtWidgets.QLabel(self.centralwidget)
-        self.label_5.setGeometry(QtCore.QRect(260, 130, 121, 31))
-        self.label_5.setObjectName(_fromUtf8("label_5"))
-        self.LCD_TrueSampleDt = QtWidgets.QLCDNumber(self.centralwidget)
-        self.LCD_TrueSampleDt.setGeometry(QtCore.QRect(390, 90, 81, 31))
-        self.LCD_TrueSampleDt.setObjectName(_fromUtf8("LCD_TrueSampleDt"))
-        self.LCD_dt = QtWidgets.QLCDNumber(self.centralwidget)
-        self.LCD_dt.setGeometry(QtCore.QRect(390, 130, 81, 31))
-        self.LCD_dt.setObjectName(_fromUtf8("LCD_dt"))
-        self.label_6 = QtWidgets.QLabel(self.centralwidget)
-        self.label_6.setGeometry(QtCore.QRect(10, 170, 121, 31))
-        self.label_6.setObjectName(_fromUtf8("label_6"))
-        self.TB_maxlen = QtWidgets.QSpinBox(self.centralwidget)
-        self.TB_maxlen.setGeometry(QtCore.QRect(140, 170, 101, 31))
-        self.TB_maxlen.setMaximum(999999999)
-        self.TB_maxlen.setObjectName(_fromUtf8("TB_maxlen"))
-        self.label_7 = QtWidgets.QLabel(self.centralwidget)
-        self.label_7.setGeometry(QtCore.QRect(260, 170, 121, 31))
-        self.label_7.setObjectName(_fromUtf8("label_7"))
-        self.LCD_callbacksPerPeriod = QtWidgets.QLCDNumber(self.centralwidget)
-        self.LCD_callbacksPerPeriod.setGeometry(QtCore.QRect(390, 170, 81, 31))
-        self.LCD_callbacksPerPeriod.setObjectName(_fromUtf8("LCD_callbacksPerPeriod"))
-        self.BTN_saverestart = QtWidgets.QPushButton(self.centralwidget)
-        self.BTN_saverestart.setGeometry(QtCore.QRect(110, 210, 231, 31))
-        self.BTN_saverestart.setObjectName(_fromUtf8("BTN_saverestart"))
-        self.label_8 = QtWidgets.QLabel(self.centralwidget)
-        self.label_8.setGeometry(QtCore.QRect(10, 10, 461, 31))
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(170, 0, 0))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(170, 0, 0))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(106, 104, 100))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        self.label_8.setPalette(palette)
-        self.label_8.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_8.setObjectName(_fromUtf8("label_8"))
-        self.label_9 = QtWidgets.QLabel(self.centralwidget)
-        self.label_9.setGeometry(QtCore.QRect(10, 130, 121, 31))
-        self.label_9.setObjectName(_fromUtf8("label_9"))
-        self.TB_buffersize = QtWidgets.QSpinBox(self.centralwidget)
-        self.TB_buffersize.setGeometry(QtCore.QRect(140, 130, 101, 31))
-        self.TB_buffersize.setMaximum(999999999)
-        self.TB_buffersize.setObjectName(_fromUtf8("TB_buffersize"))
-        MainWindow.setCentralWidget(self.centralwidget)
+        # --- Middle: Data Grid ---
+        # We use a grid with 4 columns: 
+        # [Label] [Input] | [Label] [LCD]
+        self.grid_layout = QGridLayout()
+        self.grid_layout.setHorizontalSpacing(20) # Add space between left and right groups
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        # --- Left Column (Inputs) ---
+        
+        # Row 0
+        self.label = QLabel("Samplerate per channel")
+        self.TB_samprate = self.create_spinbox()
+        self.TB_samprate.setObjectName("TB_samprate")
+        self.grid_layout.addWidget(self.label, 0, 0)
+        self.grid_layout.addWidget(self.TB_samprate, 0, 1)
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(_translate("MainWindow", "Data acquisition settings", None))
-        self.label.setText(_translate("MainWindow", "Samplerate per channel", None))
-        self.label_2.setText(_translate("MainWindow", "Samples per channel", None))
-        self.label_3.setText(_translate("MainWindow", "Overall samplerate", None))
-        self.label_4.setText(_translate("MainWindow", "Time between samples", None))
-        self.label_5.setText(_translate("MainWindow", "Time between callbacks", None))
-        self.label_6.setText(_translate("MainWindow", "Saved seconds per chnl.", None))
-        self.label_7.setText(_translate("MainWindow", "Callbacks per sine period", None))
-        self.BTN_saverestart.setText(_translate("MainWindow", "Save values and restart program", None))
-        self.label_8.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600; text-decoration: underline;\">CHANGING THESE VALUES REQUIRES A PROGRAM RESTART!!!</span></p></body></html>", None))
-        self.label_9.setText(_translate("MainWindow", "Buffersize (Faktor)", None))
+        # Row 1
+        self.label_2 = QLabel("Samples per channel")
+        self.TB_length = self.create_spinbox()
+        self.TB_length.setObjectName("TB_length")
+        self.grid_layout.addWidget(self.label_2, 1, 0)
+        self.grid_layout.addWidget(self.TB_length, 1, 1)
 
+        # Row 2
+        self.label_9 = QLabel("Buffersize (Faktor)")
+        self.TB_buffersize = self.create_spinbox()
+        self.TB_buffersize.setObjectName("TB_buffersize")
+        self.grid_layout.addWidget(self.label_9, 2, 0)
+        self.grid_layout.addWidget(self.TB_buffersize, 2, 1)
+
+        # Row 3
+        self.label_6 = QLabel("Saved seconds per chnl.")
+        self.TB_maxlen = self.create_spinbox()
+        self.TB_maxlen.setObjectName("TB_maxlen")
+        self.grid_layout.addWidget(self.label_6, 3, 0)
+        self.grid_layout.addWidget(self.TB_maxlen, 3, 1)
+
+        # --- Right Column (Outputs/LCDs) ---
+
+        # Row 0
+        self.label_3 = QLabel("Overall samplerate")
+        self.LCD_totalSamprate = self.create_lcd()
+        self.LCD_totalSamprate.setObjectName("LCD_totalSamprate")
+        self.grid_layout.addWidget(self.label_3, 0, 2)
+        self.grid_layout.addWidget(self.LCD_totalSamprate, 0, 3)
+
+        # Row 1
+        self.label_4 = QLabel("Time between samples")
+        self.LCD_TrueSampleDt = self.create_lcd()
+        self.LCD_TrueSampleDt.setObjectName("LCD_TrueSampleDt")
+        self.grid_layout.addWidget(self.label_4, 1, 2)
+        self.grid_layout.addWidget(self.LCD_TrueSampleDt, 1, 3)
+
+        # Row 2
+        self.label_5 = QLabel("Time between callbacks")
+        self.LCD_dt = self.create_lcd()
+        self.LCD_dt.setObjectName("LCD_dt")
+        self.grid_layout.addWidget(self.label_5, 2, 2)
+        self.grid_layout.addWidget(self.LCD_dt, 2, 3)
+
+        # Row 3
+        self.label_7 = QLabel("Callbacks per sine period")
+        self.LCD_callbacksPerPeriod = self.create_lcd()
+        self.LCD_callbacksPerPeriod.setObjectName("LCD_callbacksPerPeriod")
+        self.grid_layout.addWidget(self.label_7, 3, 2)
+        self.grid_layout.addWidget(self.LCD_callbacksPerPeriod, 3, 3)
+
+        # Add grid to main layout
+        self.main_layout.addLayout(self.grid_layout)
+
+        # --- Bottom: Save Button ---
+        self.BTN_saverestart = QPushButton("Save values and restart program")
+        self.BTN_saverestart.setObjectName("BTN_saverestart")
+        self.BTN_saverestart.setMinimumHeight(40) # Make it prominent
+        
+        self.main_layout.addWidget(self.BTN_saverestart)
+
+    # --- Helper Methods ---
+    def create_spinbox(self):
+        sb = QSpinBox()
+        sb.setMaximum(999999999) # Match original max
+        return sb
+
+    def create_lcd(self):
+        lcd = QLCDNumber()
+        lcd.setSegmentStyle(QLCDNumber.Flat)
+        lcd.setSmallDecimalPoint(True)
+        return lcd
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    
+    # Enable High DPI scaling
+    app.setAttribute(Qt.AA_EnableHighDpiScaling)
+    
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())

@@ -3,11 +3,10 @@ import basicWindow
 from PyQt5 import QtWidgets 
 
       
-class VeloMode(QtWidgets.QMainWindow,gui_w_cfgVelomode.Ui_MainWindow,basicWindow.BasicWindow):
+class VeloMode(gui_w_cfgVelomode.Ui_MainWindow,basicWindow.BasicWindow):
     def __init__(self, w_main):
         super(VeloMode,self).__init__()
         self.loadBasicObjects(w_main)
-        self.setupUi(self) 
         
         self.w_main_pos = w_main.pos()
         #Inherited from Basic Window

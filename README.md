@@ -163,14 +163,21 @@ You might need administrator privileges
 * gui_w_cfgPID.py
 * gui_w_cfgPos.py
 * gui_w_cfgShadowSensor.py
+* gui_w_coilPolarity.py
+* gui_w_plot.py
+* gui_w_cfgVelomode.py
+* gui_w_coilSelection.py
+* gui_w_controlBalance.py
+* gui_w_dataAcqSettings.py
+* gui_w_measureBL.py
+* gui_w_pathsAndVariables.py
+
 
 ### Todo
-gui_w_cfgVelomode.py
-gui_w_coilPolarity.py
-gui_w_coilSelection.py
-gui_w_controlBalance.py
-gui_w_dataAcqSettings.py
-gui_w_measureBL.py
-gui_w_pathsAndVariables.py
-gui_w_plot.py
+
+
+
 gui_w_weighMass.py
+
+
+Is gui_w_coilSelection.py no longer used?

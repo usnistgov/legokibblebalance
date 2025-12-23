@@ -1,136 +1,140 @@
-# -*- coding: utf-8 -*-
+import sys
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QLabel, 
+                             QLineEdit, QCheckBox, QDoubleSpinBox, 
+                             QPushButton, QVBoxLayout, QGridLayout, 
+                             QGroupBox, QFrame)
+from PyQt5.QtCore import Qt
 
-# Form implementation generated from reading ui file 'gui_w_pathsAndVariables.ui'
-#
-# Created: Fri Mar 10 17:21:53 2017
-#      by: PyQt4 UI code generator 4.11.3
-#
-# WARNING! All changes made in this file will be lost!
+class Ui_MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Settings: Paths & Variables")
+        # Responsive default size
+        self.resize(400, 500)
+        self.initUI()
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+    def initUI(self):
+        self.centralwidget = QWidget()
+        self.setCentralWidget(self.centralwidget)
 
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    def _fromUtf8(s):
-        return s
+        # Main Layout: Vertical
+        self.main_layout = QVBoxLayout(self.centralwidget)
 
-try:
-    _encoding = QtWidgets.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtWidgets.QApplication.translate(context, text, disambig)
+        # --- Top Group: Paths ---
+        self.setup_paths_group()
+        self.main_layout.addWidget(self.groupBox)
 
-class Ui_w_pathsAndVariables(object):
-    def setupUi(self, w_pathsAndVariables):
-        w_pathsAndVariables.setObjectName(_fromUtf8("w_pathsAndVariables"))
-        w_pathsAndVariables.resize(311, 481)
-        self.centralwidget = QtWidgets.QWidget(w_pathsAndVariables)
-        self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.gridLayout_3 = QtWidgets.QGridLayout(self.centralwidget)
-        self.gridLayout_3.setObjectName(_fromUtf8("gridLayout_3"))
-        self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox.setEnabled(False)
-        self.groupBox.setObjectName(_fromUtf8("groupBox"))
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.groupBox)
-        self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
-        self.CB_defaultFolder = QtWidgets.QCheckBox(self.groupBox)
-        self.CB_defaultFolder.setEnabled(False)
+        # --- Middle Group: Variables ---
+        self.setup_variables_group()
+        self.main_layout.addWidget(self.groupBox_2)
+
+        # --- Bottom: Save Button ---
+        self.BTN_saveRestart = QPushButton("save values and close program")
+        self.BTN_saveRestart.setObjectName("BTN_saveRestart")
+        self.BTN_saveRestart.setMinimumHeight(40) # Make it easier to click
+        
+        self.main_layout.addWidget(self.BTN_saveRestart)
+
+    def setup_paths_group(self):
+        self.groupBox = QGroupBox("Paths")
+        self.groupBox.setEnabled(False) # Kept from original, though logic likely enables it
+        self.groupBox.setObjectName("groupBox")
+        
+        layout = QGridLayout()
+
+        # Checkboxes
+        self.CB_defaultFolder = QCheckBox("Use default Folder")
         self.CB_defaultFolder.setChecked(True)
-        self.CB_defaultFolder.setObjectName(_fromUtf8("CB_defaultFolder"))
-        self.gridLayout_2.addWidget(self.CB_defaultFolder, 0, 0, 1, 2)
-        self.CB_diffrentFolder = QtWidgets.QCheckBox(self.groupBox)
+        self.CB_defaultFolder.setEnabled(False)
+        self.CB_defaultFolder.setObjectName("CB_defaultFolder")
+
+        self.CB_diffrentFolder = QCheckBox("Use different Folder")
         self.CB_diffrentFolder.setEnabled(False)
-        self.CB_diffrentFolder.setObjectName(_fromUtf8("CB_diffrentFolder"))
-        self.gridLayout_2.addWidget(self.CB_diffrentFolder, 0, 2, 1, 1)
-        self.label_Path = QtWidgets.QLabel(self.groupBox)
+        self.CB_diffrentFolder.setObjectName("CB_diffrentFolder")
+
+        layout.addWidget(self.CB_defaultFolder, 0, 0)
+        layout.addWidget(self.CB_diffrentFolder, 0, 1)
+
+        # Path Input
+        self.label_Path = QLabel("Path for Config-Files:")
         self.label_Path.setEnabled(False)
-        self.label_Path.setObjectName(_fromUtf8("label_Path"))
-        self.gridLayout_2.addWidget(self.label_Path, 1, 0, 1, 1)
-        self.TEXT_Path = QtWidgets.QLineEdit(self.groupBox)
+        self.label_Path.setObjectName("label_Path")
+
+        self.TEXT_Path = QLineEdit()
         self.TEXT_Path.setEnabled(False)
-        self.TEXT_Path.setText(_fromUtf8(""))
-        self.TEXT_Path.setObjectName(_fromUtf8("TEXT_Path"))
-        self.gridLayout_2.addWidget(self.TEXT_Path, 1, 1, 1, 2)
-        self.gridLayout_3.addWidget(self.groupBox, 0, 0, 1, 1)
-        self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox_2.setObjectName(_fromUtf8("groupBox_2"))
-        self.gridLayout = QtWidgets.QGridLayout(self.groupBox_2)
-        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.label_9 = QtWidgets.QLabel(self.groupBox_2)
-        self.label_9.setObjectName(_fromUtf8("label_9"))
-        self.gridLayout.addWidget(self.label_9, 0, 0, 1, 1)
-        self.TB_Armlength = QtWidgets.QDoubleSpinBox(self.groupBox_2)
+        self.TEXT_Path.setObjectName("TEXT_Path")
+
+        layout.addWidget(self.label_Path, 1, 0)
+        layout.addWidget(self.TEXT_Path, 1, 1)
+
+        self.groupBox.setLayout(layout)
+
+    def setup_variables_group(self):
+        self.groupBox_2 = QGroupBox("Variables")
+        self.groupBox_2.setObjectName("groupBox_2")
+        
+        layout = QGridLayout()
+        # Columns: [Label] [Input] [Unit]
+
+        # Row 0: Arm Length
+        l1 = QLabel("Watt Balance Armlength")
+        self.TB_Armlength = QDoubleSpinBox()
         self.TB_Armlength.setDecimals(2)
         self.TB_Armlength.setMaximum(1000.0)
-        self.TB_Armlength.setObjectName(_fromUtf8("TB_Armlength"))
-        self.gridLayout.addWidget(self.TB_Armlength, 0, 1, 1, 1)
-        self.label_10 = QtWidgets.QLabel(self.groupBox_2)
-        self.label_10.setObjectName(_fromUtf8("label_10"))
-        self.gridLayout.addWidget(self.label_10, 0, 2, 1, 1)
-        self.label_6 = QtWidgets.QLabel(self.groupBox_2)
-        self.label_6.setObjectName(_fromUtf8("label_6"))
-        self.gridLayout.addWidget(self.label_6, 1, 0, 1, 1)
-        self.TB_Resistance = QtWidgets.QDoubleSpinBox(self.groupBox_2)
+        self.TB_Armlength.setObjectName("TB_Armlength")
+        u1 = QLabel("cm")
+
+        layout.addWidget(l1, 0, 0)
+        layout.addWidget(self.TB_Armlength, 0, 1)
+        layout.addWidget(u1, 0, 2)
+
+        # Row 1: Resistance
+        l2 = QLabel("Resistance")
+        self.TB_Resistance = QDoubleSpinBox()
         self.TB_Resistance.setMaximum(999999999.0)
-        self.TB_Resistance.setObjectName(_fromUtf8("TB_Resistance"))
-        self.gridLayout.addWidget(self.TB_Resistance, 1, 1, 1, 1)
-        self.label_11 = QtWidgets.QLabel(self.groupBox_2)
-        self.label_11.setObjectName(_fromUtf8("label_11"))
-        self.gridLayout.addWidget(self.label_11, 1, 2, 1, 1)
-        self.label_7 = QtWidgets.QLabel(self.groupBox_2)
-        self.label_7.setObjectName(_fromUtf8("label_7"))
-        self.gridLayout.addWidget(self.label_7, 2, 0, 1, 1)
-        self.TB_little_g = QtWidgets.QDoubleSpinBox(self.groupBox_2)
+        self.TB_Resistance.setObjectName("TB_Resistance")
+        u2 = QLabel("ohm")
+
+        layout.addWidget(l2, 1, 0)
+        layout.addWidget(self.TB_Resistance, 1, 1)
+        layout.addWidget(u2, 1, 2)
+
+        # Row 2: Little g
+        l3 = QLabel("g")
+        self.TB_little_g = QDoubleSpinBox()
         self.TB_little_g.setDecimals(4)
-        self.TB_little_g.setMinimum(8.0)
-        self.TB_little_g.setMaximum(11.0)
+        self.TB_little_g.setRange(8.0, 11.0)
         self.TB_little_g.setSingleStep(0.01)
-        self.TB_little_g.setProperty("value", 8.0)
-        self.TB_little_g.setObjectName(_fromUtf8("TB_little_g"))
-        self.gridLayout.addWidget(self.TB_little_g, 2, 1, 1, 1)
-        self.label_12 = QtWidgets.QLabel(self.groupBox_2)
-        self.label_12.setObjectName(_fromUtf8("label_12"))
-        self.gridLayout.addWidget(self.label_12, 2, 2, 1, 1)
-        self.label_8 = QtWidgets.QLabel(self.groupBox_2)
-        self.label_8.setObjectName(_fromUtf8("label_8"))
-        self.gridLayout.addWidget(self.label_8, 3, 0, 1, 1)
-        self.TB_AcceptablePositionDeviation = QtWidgets.QDoubleSpinBox(self.groupBox_2)
+        self.TB_little_g.setValue(8.0)
+        self.TB_little_g.setObjectName("TB_little_g")
+        u3 = QLabel("m/s²")
+
+        layout.addWidget(l3, 2, 0)
+        layout.addWidget(self.TB_little_g, 2, 1)
+        layout.addWidget(u3, 2, 2)
+
+        # Row 3: Deviation
+        l4 = QLabel("Acceptable Position Deviation:")
+        self.TB_AcceptablePositionDeviation = QDoubleSpinBox()
         self.TB_AcceptablePositionDeviation.setDecimals(4)
-        self.TB_AcceptablePositionDeviation.setMinimum(0.0)
-        self.TB_AcceptablePositionDeviation.setMaximum(1.0)
+        self.TB_AcceptablePositionDeviation.setRange(0.0, 1.0)
         self.TB_AcceptablePositionDeviation.setSingleStep(0.001)
-        self.TB_AcceptablePositionDeviation.setProperty("value", 0.007)
-        self.TB_AcceptablePositionDeviation.setObjectName(_fromUtf8("TB_AcceptablePositionDeviation"))
-        self.gridLayout.addWidget(self.TB_AcceptablePositionDeviation, 3, 1, 1, 1)
-        self.label_13 = QtWidgets.QLabel(self.groupBox_2)
-        self.label_13.setObjectName(_fromUtf8("label_13"))
-        self.gridLayout.addWidget(self.label_13, 3, 2, 1, 1)
-        self.gridLayout_3.addWidget(self.groupBox_2, 1, 0, 1, 1)
-        self.BTN_saveRestart = QtWidgets.QPushButton(self.centralwidget)
-        self.BTN_saveRestart.setObjectName(_fromUtf8("BTN_saveRestart"))
-        self.gridLayout_3.addWidget(self.BTN_saveRestart, 2, 0, 1, 1)
-        w_pathsAndVariables.setCentralWidget(self.centralwidget)
+        self.TB_AcceptablePositionDeviation.setValue(0.007)
+        self.TB_AcceptablePositionDeviation.setObjectName("TB_AcceptablePositionDeviation")
+        u4 = QLabel("?mm?") # Kept exact text from original
 
-        self.retranslateUi(w_pathsAndVariables)
-        QtCore.QMetaObject.connectSlotsByName(w_pathsAndVariables)
+        layout.addWidget(l4, 3, 0)
+        layout.addWidget(self.TB_AcceptablePositionDeviation, 3, 1)
+        layout.addWidget(u4, 3, 2)
 
-    def retranslateUi(self, w_pathsAndVariables):
-        w_pathsAndVariables.setWindowTitle(_translate("w_pathsAndVariables", "Settings: Paths & Variables", None))
-        self.groupBox.setTitle(_translate("w_pathsAndVariables", "Paths", None))
-        self.CB_defaultFolder.setText(_translate("w_pathsAndVariables", "Use default Folder", None))
-        self.CB_diffrentFolder.setText(_translate("w_pathsAndVariables", "Use default Folder", None))
-        self.label_Path.setText(_translate("w_pathsAndVariables", "Path for Config-Files:", None))
-        self.groupBox_2.setTitle(_translate("w_pathsAndVariables", "Variables", None))
-        self.label_9.setText(_translate("w_pathsAndVariables", "Watt Balance Armlength", None))
-        self.label_10.setText(_translate("w_pathsAndVariables", "cm", None))
-        self.label_6.setText(_translate("w_pathsAndVariables", "Resitance ", None))
-        self.label_11.setText(_translate("w_pathsAndVariables", "ohm", None))
-        self.label_7.setText(_translate("w_pathsAndVariables", "g", None))
-        self.label_12.setText(_translate("w_pathsAndVariables", "m/s²", None))
-        self.label_8.setText(_translate("w_pathsAndVariables", "Acceptable Position Deviation:", None))
-        self.label_13.setText(_translate("w_pathsAndVariables", "?mm?", None))
-        self.BTN_saveRestart.setText(_translate("w_pathsAndVariables", "save values and close program", None))
+        self.groupBox_2.setLayout(layout)
 
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    
+    # Enable High DPI scaling
+    app.setAttribute(Qt.AA_EnableHighDpiScaling)
+    
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())

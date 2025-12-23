@@ -1,76 +1,82 @@
-# -*- coding: utf-8 -*-
+import sys
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QCheckBox, 
+                             QGroupBox, QDoubleSpinBox, QLCDNumber, 
+                             QVBoxLayout, QHBoxLayout, QAbstractSpinBox)
+from PyQt5.QtCore import Qt
 
-# Form implementation generated from reading ui file 'gui_w_controlBalance.ui'
-#
-# Created: Mon Mar 06 14:36:24 2017
-#      by: PyQt4 UI code generator 4.11.3
-#
-# WARNING! All changes made in this file will be lost!
+class Ui_MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Control Balance Manual")
+        # Flexible default size
+        self.resize(350, 150)
+        self.initUI()
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+    def initUI(self):
+        self.centralwidget = QWidget()
+        self.setCentralWidget(self.centralwidget)
 
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    def _fromUtf8(s):
-        return s
+        # Main Layout: Horizontal
+        # Left Side: Checkboxes
+        # Right Side: Output Voltage Group
+        self.main_layout = QHBoxLayout(self.centralwidget)
 
-try:
-    _encoding = QtWidgets.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtWidgets.QApplication.translate(context, text, disambig)
+        # --- Left Section: Checkboxes ---
+        self.checkbox_layout = QVBoxLayout()
+        
+        self.CB_usePIDFeedback = QCheckBox("Use static PID Feedback")
+        self.CB_usePIDFeedback.setChecked(True)
+        self.CB_usePIDFeedback.setObjectName("CB_usePIDFeedback")
+        
+        self.CB_useInputBox = QCheckBox("Use Input Box")
+        self.CB_useInputBox.setChecked(False)
+        self.CB_useInputBox.setObjectName("CB_useInputBox")
+        
+        self.CB_useInputWheel = QCheckBox("Use Input Wheel")
+        self.CB_useInputWheel.setEnabled(False)
+        self.CB_useInputWheel.setObjectName("CB_useInputWheel")
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(312, 84)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
-        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox.setObjectName(_fromUtf8("groupBox"))
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.groupBox)
-        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
-        self.TB_analogOutput = QtWidgets.QDoubleSpinBox(self.groupBox)
+        # Add checkboxes to vertical layout
+        self.checkbox_layout.addWidget(self.CB_usePIDFeedback)
+        self.checkbox_layout.addWidget(self.CB_useInputBox)
+        self.checkbox_layout.addWidget(self.CB_useInputWheel)
+        self.checkbox_layout.addStretch() # Push checkboxes to the top
+
+        # --- Right Section: Output Group ---
+        self.groupBox = QGroupBox("Output Voltage")
+        self.group_layout = QHBoxLayout()
+
+        # Input SpinBox
+        self.TB_analogOutput = QDoubleSpinBox()
         self.TB_analogOutput.setFrame(True)
-        self.TB_analogOutput.setAlignment(QtCore.Qt.AlignCenter)
-        self.TB_analogOutput.setButtonSymbols(QtWidgets.QAbstractSpinBox.PlusMinus)
+        self.TB_analogOutput.setAlignment(Qt.AlignCenter)
+        self.TB_analogOutput.setButtonSymbols(QAbstractSpinBox.PlusMinus)
         self.TB_analogOutput.setKeyboardTracking(False)
         self.TB_analogOutput.setDecimals(3)
-        self.TB_analogOutput.setMinimum(-10.0)
-        self.TB_analogOutput.setMaximum(10.0)
+        self.TB_analogOutput.setRange(-10.0, 10.0)
         self.TB_analogOutput.setSingleStep(0.5)
-        self.TB_analogOutput.setObjectName(_fromUtf8("TB_analogOutput"))
-        self.horizontalLayout.addWidget(self.TB_analogOutput)
-        self.LCD_analogOutput = QtWidgets.QLCDNumber(self.groupBox)
-        self.LCD_analogOutput.setObjectName(_fromUtf8("LCD_analogOutput"))
-        self.horizontalLayout.addWidget(self.LCD_analogOutput)
-        self.gridLayout.addWidget(self.groupBox, 0, 1, 4, 1)
-        self.CB_usePIDFeedback = QtWidgets.QCheckBox(self.centralwidget)
-        self.CB_usePIDFeedback.setChecked(True)
-        self.CB_usePIDFeedback.setObjectName(_fromUtf8("CB_usePIDFeedback"))
-        self.gridLayout.addWidget(self.CB_usePIDFeedback, 0, 0, 1, 1)
-        self.CB_useInputBox = QtWidgets.QCheckBox(self.centralwidget)
-        self.CB_useInputBox.setChecked(False)
-        self.CB_useInputBox.setObjectName(_fromUtf8("CB_useInputBox"))
-        self.gridLayout.addWidget(self.CB_useInputBox, 1, 0, 1, 1)
-        self.CB_useInputWheel = QtWidgets.QCheckBox(self.centralwidget)
-        self.CB_useInputWheel.setEnabled(False)
-        self.CB_useInputWheel.setObjectName(_fromUtf8("CB_useInputWheel"))
-        self.gridLayout.addWidget(self.CB_useInputWheel, 2, 0, 1, 1)
-        MainWindow.setCentralWidget(self.centralwidget)
+        self.TB_analogOutput.setObjectName("TB_analogOutput")
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        # Output LCD
+        self.LCD_analogOutput = QLCDNumber()
+        self.LCD_analogOutput.setSegmentStyle(QLCDNumber.Flat) # Optional: cleaner look
+        self.LCD_analogOutput.setObjectName("LCD_analogOutput")
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(_translate("MainWindow", "Control Balance Manual", None))
-        self.groupBox.setTitle(_translate("MainWindow", "Output Voltage", None))
-        self.CB_usePIDFeedback.setText(_translate("MainWindow", "Use static PID Feedback", None))
-        self.CB_useInputBox.setText(_translate("MainWindow", "Use Input Box", None))
-        self.CB_useInputWheel.setText(_translate("MainWindow", "Use Input Wheel", None))
+        # Add widgets to group layout
+        self.group_layout.addWidget(self.TB_analogOutput)
+        self.group_layout.addWidget(self.LCD_analogOutput)
+        self.groupBox.setLayout(self.group_layout)
 
+        # --- Assemble Main Layout ---
+        self.main_layout.addLayout(self.checkbox_layout)
+        self.main_layout.addWidget(self.groupBox)
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    
+    # Enable High DPI scaling
+    app.setAttribute(Qt.AA_EnableHighDpiScaling)
+    
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())

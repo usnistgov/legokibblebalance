@@ -1,54 +1,57 @@
-# -*- coding: utf-8 -*-
+import sys
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QLabel, 
+                             QPushButton, QVBoxLayout, QHBoxLayout)
+from PyQt5.QtCore import Qt
 
-# Form implementation generated from reading ui file 'gui_w_coilSelection.ui'
-#
-# Created: Fri Sep 23 09:59:55 2016
-#      by: PyQt4 UI code generator 4.11.3
-#
-# WARNING! All changes made in this file will be lost!
+class ui_MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Coil Selection")
+        # Small default size, but resizable
+        self.resize(300, 120) 
+        self.initUI()
 
-from PyQt4 import QtCore, QtGui
+    def initUI(self):
+        self.centralwidget = QWidget()
+        self.setCentralWidget(self.centralwidget)
 
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    def _fromUtf8(s):
-        return s
+        # Main Layout: Vertical
+        # Top: Status Text
+        # Bottom: Buttons
+        self.main_layout = QVBoxLayout(self.centralwidget)
 
-try:
-    _encoding = QtWidgets.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtWidgets.QApplication.translate(context, text, disambig)
+        # --- Top: Active Coil Label ---
+        self.TXT_activecoil = QLabel("Active: Coil X")
+        self.TXT_activecoil.setAlignment(Qt.AlignCenter)
+        # Using stylesheet instead of HTML for cleaner code
+        self.TXT_activecoil.setStyleSheet("font-size: 10pt; font-weight: bold;")
+        self.TXT_activecoil.setObjectName("TXT_activecoil")
+        
+        # Add to main layout
+        self.main_layout.addWidget(self.TXT_activecoil)
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(273, 68)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
-        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.TXT_activecoil = QtWidgets.QLabel(self.centralwidget)
-        self.TXT_activecoil.setAlignment(QtCore.Qt.AlignCenter)
-        self.TXT_activecoil.setObjectName(_fromUtf8("TXT_activecoil"))
-        self.gridLayout.addWidget(self.TXT_activecoil, 1, 0, 1, 2)
-        self.BTN_useCoilA = QtWidgets.QPushButton(self.centralwidget)
-        self.BTN_useCoilA.setObjectName(_fromUtf8("BTN_useCoilA"))
-        self.gridLayout.addWidget(self.BTN_useCoilA, 2, 0, 1, 1)
-        self.BTN_useCoilB = QtWidgets.QPushButton(self.centralwidget)
-        self.BTN_useCoilB.setObjectName(_fromUtf8("BTN_useCoilB"))
-        self.gridLayout.addWidget(self.BTN_useCoilB, 2, 1, 1, 1)
-        MainWindow.setCentralWidget(self.centralwidget)
+        # --- Bottom: Buttons Row ---
+        self.button_layout = QHBoxLayout()
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.BTN_useCoilA = QPushButton("Use coil A")
+        self.BTN_useCoilA.setObjectName("BTN_useCoilA")
+        
+        self.BTN_useCoilB = QPushButton("Use coil B")
+        self.BTN_useCoilB.setObjectName("BTN_useCoilB")
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(_translate("MainWindow", "Coil Selection", None))
-        self.TXT_activecoil.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600;\">Active: Coil X</span></p></body></html>", None))
-        self.BTN_useCoilA.setText(_translate("MainWindow", "Use coil A", None))
-        self.BTN_useCoilB.setText(_translate("MainWindow", "Use coil B", None))
+        # Add buttons to horizontal layout
+        self.button_layout.addWidget(self.BTN_useCoilA)
+        self.button_layout.addWidget(self.BTN_useCoilB)
 
+        # Add horizontal layout to main layout
+        self.main_layout.addLayout(self.button_layout)
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    
+    # Enable High DPI scaling for sharp text
+    app.setAttribute(Qt.AA_EnableHighDpiScaling)
+    
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())

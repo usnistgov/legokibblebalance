@@ -2,12 +2,11 @@ import gui_w_controlBalance
 import basicWindow
 from PyQt5 import QtWidgets 
       
-class ControlBalance(QtWidgets.QMainWindow,gui_w_controlBalance.Ui_MainWindow,basicWindow.BasicWindow):
+class ControlBalance(gui_w_controlBalance.Ui_MainWindow,basicWindow.BasicWindow):
     def __init__(self, w_main):
         super(ControlBalance,self).__init__()
         self.loadBasicObjects(w_main)
-        self.setupUi(self)
-
+ 
         self.w_main_pos = w_main.pos()
         #Inherited from Basic Window
         self.checkMoveWindow(self.w_main_pos.x(),self.w_main_pos.y()-self.height()-26)

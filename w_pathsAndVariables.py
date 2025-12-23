@@ -4,16 +4,17 @@ Created on Sun Feb 26 18:57:21 2017
 
 @author: Alex
 """
+from PyQt5 import QtWidgets
+from PyQt5 import QtCore
+from PyQt5.QtWidgets import QMessageBox
 
 import gui_w_pathsAndVariables
 import basicWindow
-from PyQt5 import QtWidgets
 
-class PathsAndVariables(QtWidgets.QMainWindow,gui_w_pathsAndVariables.Ui_w_pathsAndVariables,basicWindow.BasicWindow):
+class PathsAndVariables(gui_w_pathsAndVariables.Ui_MainWindow,basicWindow.BasicWindow):
     def __init__(self,w_main):
         super(PathsAndVariables,self).__init__()
         self.loadBasicObjects(w_main)
-        self.setupUi(self)
 #        
 #        self.w_main_pos = w_main.pos()        
 #        self.move(self.w_main_pos.x(),self.w_main_pos.y()-self.height()-26)
@@ -30,23 +31,22 @@ class PathsAndVariables(QtWidgets.QMainWindow,gui_w_pathsAndVariables.Ui_w_paths
         self.windowShown=True
         
     def saveRestart(self):
-        result = gui_w_pathsAndVariables.QtWidgets.QMessageBox.question(self.myMainWindow,
-                          "Save new Settings?",
-                          "If you save the new Settings the Program will close and you have to restart manually.",
-                          gui_w_pathsAndVariables.QtWidgets.QMessageBox.Yes| gui_w_pathsAndVariables.QtWidgets.QMessageBox.No)
-
-        if result == gui_w_pathsAndVariables.QtWidgets.QMessageBox.Yes:
-            self.myConfig['global']['armlength']=str(self.TB_Armlength.value())
-            self.myConfig['global']['g']=str(self.TB_little_g.value())
-            self.myConfig['global']['resistance']=str(self.TB_Resistance.value())
-            self.myConfig['global']['accPosError']=str(self.TB_AcceptablePositionDeviation.value())
-            with open('config.ini','w') as cfg:
-                self.myConfig.write(cfg)
-                
-            self.myMainWindow.prepareDesiredClose()
-            self.myMainWindow.close()
-    
+            result = QMessageBox.question(self,
+                "Save new Settings?",
+                "If you save the new Settings the Program will close and you have to restart manually.",
+                              QMessageBox.Yes | QMessageBox.No)
+            if result == QtWidgets.QMessageBox.Yes:         
+                self.myConfig['global']['armlength']=str(self.TB_Armlength.value())
+                self.myConfig['global']['g']=str(self.TB_little_g.value())
+                self.myConfig['global']['resistance']=str(self.TB_Resistance.value())
+                self.myConfig['global']['accPosError']=str(self.TB_AcceptablePositionDeviation.value())
+                with open('config.ini','w') as cfg:
+                    self.myConfig.write(cfg)
+                    
+                self.myMainWindow.prepareDesiredClose()
+                self.myMainWindow.close()
         
+     
         
     def manualClose(self):
         self.windowShown = False    

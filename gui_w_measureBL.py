@@ -1,139 +1,135 @@
-# -*- coding: utf-8 -*-
+import sys
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QLabel, 
+                             QPushButton, QLCDNumber, QVBoxLayout, 
+                             QHBoxLayout, QGridLayout, QSizePolicy)
+from PyQt5.QtCore import Qt
+from pyqtgraph import PlotWidget # Requires pyqtgraph
 
-# Form implementation generated from reading ui file 'gui_w_measureBL.ui'
-#
-# Created: Fri Mar 10 17:21:35 2017
-#      by: PyQt4 UI code generator 4.11.3
-#
-# WARNING! All changes made in this file will be lost!
+class Ui_MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Measure BL")
+        # Taller default size to accommodate 3 stacked graphs
+        self.resize(700, 800)
+        self.initUI()
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+    def initUI(self):
+        self.centralwidget = QWidget()
+        self.setCentralWidget(self.centralwidget)
 
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    def _fromUtf8(s):
-        return s
+        # Main Layout: Vertical
+        # 1. Top Controls & Status (Grid)
+        # 2. Graph 1 (Voltage/Velocity)
+        # 3. Graph 2 (BL vs Position)
+        # 4. Graph 3 (BL vs Time)
+        self.main_layout = QVBoxLayout(self.centralwidget)
 
-try:
-    _encoding = QtWidgets.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtWidgets.QApplication.translate(context, text, disambig)
+        # --- Top Section: Controls and LCDs ---
+        self.top_grid = QGridLayout()
+        self.top_grid.setVerticalSpacing(10)
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(672, 621)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
-        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.BTN_resetBL0 = QtWidgets.QPushButton(self.centralwidget)
-        self.BTN_resetBL0.setObjectName(_fromUtf8("BTN_resetBL0"))
-        self.gridLayout.addWidget(self.BTN_resetBL0, 0, 0, 1, 1)
-        self.TXT_BLcoil = QtWidgets.QLabel(self.centralwidget)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setUnderline(True)
-        font.setWeight(75)
-        self.TXT_BLcoil.setFont(font)
-        self.TXT_BLcoil.setAlignment(QtCore.Qt.AlignCenter)
-        self.TXT_BLcoil.setObjectName(_fromUtf8("TXT_BLcoil"))
-        self.gridLayout.addWidget(self.TXT_BLcoil, 0, 1, 1, 1)
-        self.BTN_saveBL0 = QtWidgets.QPushButton(self.centralwidget)
-        self.BTN_saveBL0.setObjectName(_fromUtf8("BTN_saveBL0"))
-        self.gridLayout.addWidget(self.BTN_saveBL0, 0, 2, 1, 1)
-        self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setObjectName(_fromUtf8("label_2"))
-        self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setObjectName(_fromUtf8("label"))
-        self.gridLayout.addWidget(self.label, 1, 1, 1, 1)
-        self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setObjectName(_fromUtf8("label_3"))
-        self.gridLayout.addWidget(self.label_3, 1, 2, 1, 1)
-        self.LCD_BLcurrent = QtWidgets.QLCDNumber(self.centralwidget)
-        self.LCD_BLcurrent.setMinimumSize(QtCore.QSize(0, 30))
-        self.LCD_BLcurrent.setObjectName(_fromUtf8("LCD_BLcurrent"))
-        self.gridLayout.addWidget(self.LCD_BLcurrent, 2, 0, 1, 1)
-        self.LCD_BLmean = QtWidgets.QLCDNumber(self.centralwidget)
-        self.LCD_BLmean.setMinimumSize(QtCore.QSize(0, 30))
-        self.LCD_BLmean.setObjectName(_fromUtf8("LCD_BLmean"))
-        self.gridLayout.addWidget(self.LCD_BLmean, 2, 1, 1, 1)
-        self.LCD_BLerror = QtWidgets.QLCDNumber(self.centralwidget)
-        self.LCD_BLerror.setMinimumSize(QtCore.QSize(0, 30))
-        self.LCD_BLerror.setObjectName(_fromUtf8("LCD_BLerror"))
-        self.gridLayout.addWidget(self.LCD_BLerror, 2, 2, 1, 1)
-        self.label_5 = QtWidgets.QLabel(self.centralwidget)
-        self.label_5.setObjectName(_fromUtf8("label_5"))
-        self.gridLayout.addWidget(self.label_5, 3, 0, 1, 1)
-        self.label_8 = QtWidgets.QLabel(self.centralwidget)
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Text, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Text, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Text, brush)
-        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
-        self.label_8.setPalette(palette)
-        self.label_8.setObjectName(_fromUtf8("label_8"))
-        self.gridLayout.addWidget(self.label_8, 3, 1, 1, 1)
-        self.PW_2periods = PlotWidget(self.centralwidget)
-        self.PW_2periods.setObjectName(_fromUtf8("PW_2periods"))
-        self.gridLayout.addWidget(self.PW_2periods, 4, 0, 1, 3)
-        self.label_6 = QtWidgets.QLabel(self.centralwidget)
-        self.label_6.setObjectName(_fromUtf8("label_6"))
-        self.gridLayout.addWidget(self.label_6, 5, 0, 1, 1)
-        self.PW_BLofPos = PlotWidget(self.centralwidget)
-        self.PW_BLofPos.setObjectName(_fromUtf8("PW_BLofPos"))
-        self.gridLayout.addWidget(self.PW_BLofPos, 6, 0, 1, 3)
-        self.label_7 = QtWidgets.QLabel(self.centralwidget)
-        self.label_7.setObjectName(_fromUtf8("label_7"))
-        self.gridLayout.addWidget(self.label_7, 7, 0, 1, 1)
-        self.PW_BL0ofTime = PlotWidget(self.centralwidget)
-        self.PW_BL0ofTime.setObjectName(_fromUtf8("PW_BL0ofTime"))
-        self.gridLayout.addWidget(self.PW_BL0ofTime, 8, 0, 1, 3)
-        MainWindow.setCentralWidget(self.centralwidget)
+        # Row 0: Reset | Title | Save
+        self.BTN_resetBL0 = QPushButton("Reset: BL at zero position (time)")
+        self.BTN_resetBL0.setObjectName("BTN_resetBL0")
+        
+        self.TXT_BLcoil = QLabel("BL of coil X")
+        self.TXT_BLcoil.setAlignment(Qt.AlignCenter)
+        self.TXT_BLcoil.setStyleSheet("font-size: 12pt; font-weight: bold; text-decoration: underline;")
+        self.TXT_BLcoil.setObjectName("TXT_BLcoil")
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.BTN_saveBL0 = QPushButton("Save Mean Bl0")
+        self.BTN_saveBL0.setObjectName("BTN_saveBL0")
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(_translate("MainWindow", "Measure BL", None))
-        self.BTN_resetBL0.setText(_translate("MainWindow", "Reset: BL at zero position (time)", None))
-        self.TXT_BLcoil.setText(_translate("MainWindow", "BL of coil X", None))
-        self.BTN_saveBL0.setText(_translate("MainWindow", "Save Mean Bl0", None))
-        self.label_2.setText(_translate("MainWindow", "Current BL@0:", None))
-        self.label.setText(_translate("MainWindow", "Mean BL@0:", None))
-        self.label_3.setText(_translate("MainWindow", "Error in %:", None))
-        self.label_5.setText(_translate("MainWindow", "Voltage depending on coil velocity (white)", None))
-        self.label_8.setText(_translate("MainWindow", "Fit (red)", None))
-        self.label_6.setText(_translate("MainWindow", "BL depending on balance position", None))
-        self.label_7.setText(_translate("MainWindow", "BL at zero position measurements:", None))
+        self.top_grid.addWidget(self.BTN_resetBL0, 0, 0)
+        self.top_grid.addWidget(self.TXT_BLcoil, 0, 1)
+        self.top_grid.addWidget(self.BTN_saveBL0, 0, 2)
 
-from pyqtgraph import PlotWidget
+        # Row 1: Headers for LCDs
+        self.label_2 = QLabel("Current BL@0:")
+        self.label_2.setObjectName("label_2")
+        
+        self.label = QLabel("Mean BL@0:")
+        self.label.setObjectName("label")
+        
+        self.label_3 = QLabel("Error in %:")
+        self.label_3.setObjectName("label_3")
+
+        self.top_grid.addWidget(self.label_2, 1, 0)
+        self.top_grid.addWidget(self.label, 1, 1)
+        self.top_grid.addWidget(self.label_3, 1, 2)
+
+        # Row 2: LCD Values
+        self.LCD_BLcurrent = self.create_lcd()
+        self.LCD_BLcurrent.setObjectName("LCD_BLcurrent")
+        
+        self.LCD_BLmean = self.create_lcd()
+        self.LCD_BLmean.setObjectName("LCD_BLmean")
+        
+        self.LCD_BLerror = self.create_lcd()
+        self.LCD_BLerror.setObjectName("LCD_BLerror")
+
+        self.top_grid.addWidget(self.LCD_BLcurrent, 2, 0)
+        self.top_grid.addWidget(self.LCD_BLmean, 2, 1)
+        self.top_grid.addWidget(self.LCD_BLerror, 2, 2)
+
+        self.main_layout.addLayout(self.top_grid)
+
+        # --- Graph 1 Section: Voltage vs Velocity ---
+        self.g1_label_layout = QHBoxLayout()
+        
+        self.label_5 = QLabel("Voltage depending on coil velocity (white)")
+        self.label_5.setObjectName("label_5")
+        
+        self.label_8 = QLabel("Fit (red)")
+        self.label_8.setStyleSheet("color: red;")
+        self.label_8.setObjectName("label_8")
+        
+        self.g1_label_layout.addWidget(self.label_5)
+        self.g1_label_layout.addWidget(self.label_8)
+        self.g1_label_layout.addStretch()
+
+        self.PW_2periods = PlotWidget()
+        self.PW_2periods.setObjectName("PW_2periods")
+        self.PW_2periods.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
+        self.main_layout.addLayout(self.g1_label_layout)
+        self.main_layout.addWidget(self.PW_2periods)
+
+        # --- Graph 2 Section: BL vs Position ---
+        self.label_6 = QLabel("BL depending on balance position")
+        self.label_6.setObjectName("label_6")
+        
+        self.PW_BLofPos = PlotWidget()
+        self.PW_BLofPos.setObjectName("PW_BLofPos")
+        self.PW_BLofPos.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
+        self.main_layout.addWidget(self.label_6)
+        self.main_layout.addWidget(self.PW_BLofPos)
+
+        # --- Graph 3 Section: BL vs Time ---
+        self.label_7 = QLabel("BL at zero position measurements:")
+        self.label_7.setObjectName("label_7")
+        
+        self.PW_BL0ofTime = PlotWidget()
+        self.PW_BL0ofTime.setObjectName("PW_BL0ofTime")
+        self.PW_BL0ofTime.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
+        self.main_layout.addWidget(self.label_7)
+        self.main_layout.addWidget(self.PW_BL0ofTime)
+
+    # --- Helper to create standard LCDs ---
+    def create_lcd(self):
+        lcd = QLCDNumber()
+        lcd.setSegmentStyle(QLCDNumber.Flat)
+        lcd.setMinimumHeight(30)
+        return lcd
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    
+    # Enable High DPI scaling
+    app.setAttribute(Qt.AA_EnableHighDpiScaling)
+    
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())

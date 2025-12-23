@@ -3,13 +3,12 @@ import basicWindow
 from PyQt5 import QtWidgets 
 import pyqtgraph as pg
 
-class PlotWindow(QtWidgets.QMainWindow,gui_w_plot.Ui_MainWindow,basicWindow.BasicWindow):
+class PlotWindow(gui_w_plot.Ui_MainWindow,basicWindow.BasicWindow):
     def __init__(self, w_main, xydata, name,xlabel='t (s)',ylabel='U (V)'):
         super(PlotWindow,self).__init__()
         self.callco=0
         self.urate =2
         self.loadBasicObjects(w_main)    
-        self.setupUi(self)                     #Is used to determine if window is open or closed
         
         self.mymainwindow = w_main
         self.w_main_pos = w_main.pos()

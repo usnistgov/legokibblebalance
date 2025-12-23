@@ -5,11 +5,10 @@ import basicWindow
 from PyQt5 import QtWidgets
 import pyqtgraph as pg
 
-class MeasureBL(QtWidgets.QMainWindow, gui_w_measureBL.Ui_MainWindow,basicWindow.BasicWindow):
+class MeasureBL(gui_w_measureBL.Ui_MainWindow,basicWindow.BasicWindow):
     def __init__(self, w_main):
         super(MeasureBL,self).__init__()
         self.loadBasicObjects(w_main)
-        self.setupUi(self)       
         self.windowShown = True
         
         self.w_main_pos = w_main.pos()

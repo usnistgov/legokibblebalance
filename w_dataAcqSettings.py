@@ -3,11 +3,10 @@ import gui_w_dataAcqSettings
 import basicWindow
 from PyQt5 import QtWidgets
 
-class DataAcqSettings(QtWidgets.QMainWindow, gui_w_dataAcqSettings.Ui_MainWindow, basicWindow.BasicWindow):
+class DataAcqSettings( gui_w_dataAcqSettings.Ui_MainWindow, basicWindow.BasicWindow):
     def __init__(self, w_main):
         super(DataAcqSettings,self).__init__()
         self.loadBasicObjects(w_main)
-        self.setupUi(self)
         
         self.w_main_pos = w_main.pos()
         #Inherited from Basic Window
