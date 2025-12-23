@@ -154,3 +154,23 @@ You might need administrator privileges
 * A lot of the python style startLowerThenCamelCase seems to have worked it's way into the UI and looks strange.
 * The instructions are a bit too! fond! of! exclamation! marks! I feel I am being shouted at a lot.
 * No graph have x and y labels. Even when this is "obvious there should be some labels."
+
+
+## Redoing all the gui files:
+
+### Done
+* gui_w_main.py
+* gui_w_cfgPID.py
+* gui_w_cfgPos.py
+* gui_w_cfgShadowSensor.py
+
+### Todo
+gui_w_cfgVelomode.py
+gui_w_coilPolarity.py
+gui_w_coilSelection.py
+gui_w_controlBalance.py
+gui_w_dataAcqSettings.py
+gui_w_measureBL.py
+gui_w_pathsAndVariables.py
+gui_w_plot.py
+gui_w_weighMass.py

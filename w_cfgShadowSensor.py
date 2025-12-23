@@ -6,13 +6,12 @@ import basicWindow
 from PyQt5 import QtCore,QtWidgets 
       
       
-class ConfigureShadowSensor(QtWidgets.QMainWindow,\
-                            gui_w_cfgShadowSensor.Ui_MainWindow,\
+class ConfigureShadowSensor(                            gui_w_cfgShadowSensor.Ui_MainWindow,\
                             basicWindow.BasicWindow):
     def __init__(self, w_main):
         super(ConfigureShadowSensor,self).__init__()
         self.loadBasicObjects(w_main)
-        self.setupUi(self)
+        #self.setupUi(self)
         
         self.w_main_pos = w_main.pos()
         #Inherited from Basic Window

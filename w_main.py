@@ -1,4 +1,6 @@
 from PyQt5 import QtWidgets
+from PyQt5 import QtCore
+from PyQt5.QtWidgets import QMessageBox
 import gui_w_main
 
 import w_plot
@@ -21,12 +23,12 @@ import datetime
 
 
 
-class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
-    signalMainWindowClosed = gui_w_main.QtCore.pyqtSignal()    
+class MainWindow(gui_w_main.Ui_MainWindow):
+    signalMainWindowClosed = QtCore.pyqtSignal()    
     
     def __init__(self):
         super(MainWindow, self).__init__()      
-        self.setupUi(self)
+        #self.setupUi(self)
         self.TXT_activeMode.setText('Static')
         
         self.desiredClose = False #Variable used to determine if program 
@@ -372,13 +374,13 @@ class MainWindow(QtWidgets.QMainWindow, gui_w_main.Ui_MainWindow):
             self.signalMainWindowClosed.emit()
             event.accept()
         else:
-            result = gui_w_main.QtWidgets.QMessageBox.question(self,
-                          "Confirm Exit...",
-                          "Are you sure you want to exit ?",
-                          gui_w_main.QtWidgets.QMessageBox.Yes| gui_w_main.QtWidgets.QMessageBox.No)
+            result = QMessageBox.question(self,
+                              "Confirm Exit...",
+                              "Are you sure you want to exit ?",
+                              QMessageBox.Yes | QMessageBox.No)
             event.ignore()
     
-            if result == gui_w_main.QtWidgets.QMessageBox.Yes:
+            if result == QtWidgets.QMessageBox.Yes:
                 
                 self.signalMainWindowClosed.emit()
                 self.myTimer.stop()
